@@ -51,3 +51,12 @@
   margin-right: 15px;
   cursor: pointer;
 }
+
+.post-action .icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+.post-action:hover {
+  color: #1d9bf0; /* アイコンホバー時の色を青に */
+}

@@ -1,6 +1,5 @@
-// Post.tsx
 import React from 'react';
-import { ChatBubbleLeftIcon, HeartIcon } from '@heroicons/react/24/outline';
+import { ChatBubbleLeftIcon, HeartIcon } from '@heroicons/react/24/outline'; // 必要なアイコンだけをインポート
 import './Post.css';
 
 interface PostProps {
@@ -9,7 +8,6 @@ interface PostProps {
   time: string;
   content: string;
   likes: number;
-  retweets: number;
   replies: number;
   profileImage: string;
 }
@@ -20,7 +18,6 @@ const Post: React.FC<PostProps> = ({
   time,
   content,
   likes,
-  retweets,
   replies,
   profileImage,
 }) => {
@@ -35,8 +32,17 @@ const Post: React.FC<PostProps> = ({
         </div>
         <div className="post-content">{content}</div>
         <div className="post-actions">
-          <span>{replies} 返信</span>
-          <span>{likes} いいね</span>
+          {/* 返信ボタン */}
+          <div className="post-action">
+            <ChatBubbleLeftIcon className="icon" />
+            <span>{replies}</span>
+          </div>
+
+          {/* いいねボタン */}
+          <div className="post-action">
+            <HeartIcon className="icon" />
+            <span>{likes}</span>
+          </div>
         </div>
       </div>
     </div>
