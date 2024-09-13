@@ -1,35 +1,28 @@
-import React from 'react';
-import { HomeIcon, BellIcon, UserIcon } from '@heroicons/react/24/outline'; // Heroiconsをインポート
-import './Footer.css';
-interface FooterProps {
-  activePage: 'timeline' | 'profile' | 'notifications';
-  handlePageClick: (page: 'timeline' | 'profile' | 'notifications') => void;
-}
+// components/Footer.tsx
+import React from "react";
+import Link from "next/link";
+import "./footer.scss";
+import { HomeIcon, BellIcon, UserIcon, EnvelopeIcon } from '@heroicons/react/24/outline'; // Heroiconsをインポート
 
-const Footer: React.FC<FooterProps> = ({ activePage, handlePageClick }) => {
+const Footer: React.FC = () => {
   return (
-    <div className="footer">
-      <button
-        className={`footer-button ${activePage === 'timeline' ? 'active' : ''}`}
-        onClick={() => handlePageClick('timeline')}
-      >
-        <HomeIcon className="icon" />
-      </button>
-      <button
-        className={`footer-button ${activePage === 'profile' ? 'active' : ''}`}
-        onClick={() => handlePageClick('profile')}
-      >
-        <UserIcon className="icon" />
-      </button>
-      <button
-        className={`footer-button ${activePage === 'notifications' ? 'active' : ''}`}
-        onClick={() => handlePageClick('notifications')}
-      >
-        <BellIcon className="icon" />
-      </button>
-    </div>
+    <footer className="footer">
+      <ul className="navLinks">
+        <li><Link href="/timeline">
+          <HomeIcon className="icon" />
+        </Link></li>
+        <li><Link href="/profile">
+          <UserIcon className="icon" />
+        </Link></li>
+        <li><Link href="/notifications">
+          <BellIcon className="icon" />
+        </Link></li>
+        <li><Link href="/message">
+          <EnvelopeIcon className="icon" />
+        </Link></li>
+      </ul>
+    </footer>
   );
 };
 
 export default Footer;
-

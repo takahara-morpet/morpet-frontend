@@ -12,7 +12,7 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className="page-container">
+    <div>
       {/* タブのヘッダー部分 */}
       <div className="tabs">
         <button
@@ -35,9 +35,6 @@ const Page: React.FC = () => {
         {activeTab === 'follow' && <PostList posts={followPosts} />}
       </div>
         
-        {/* フッター部分 */}
-        <Footer activePage="timeline" handlePageClick={() => {}} />
-          
     </div>
   );
 };
