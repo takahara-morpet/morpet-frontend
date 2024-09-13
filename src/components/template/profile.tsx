@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import "./profile.scss";
+import "./Profile.scss";
 
 interface ProfileProps {
   icon: string;
