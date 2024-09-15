@@ -2,8 +2,8 @@
 import '../timeline/timeline.css'; // CSSファイルをインポート
 
 import React, { useState } from 'react';
-import ProfileCard from '@/components/template/Profile';
-import PostList from '@/components/template/PostList'; // PostListコンポーネントをインポート
+import ProfileCard from '@/app/components/template/Profile';
+import PostList from '@/app/components/template/PostList'; // PostListコンポーネントをインポート
 
 const ProfilePage: React.FC = () => {
     const [activeTab, setActiveTab] = useState<'self' | 'like'>('self'); // 初期タブは「おすすめ」
