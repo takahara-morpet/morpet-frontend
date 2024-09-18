@@ -1,7 +1,7 @@
 // components/Footer.tsx
 import React from "react";
 import Link from "next/link";
-import "./footer.scss";
+import "./Footer.css";
 import { HomeIcon, BellIcon, UserIcon, EnvelopeIcon } from '@heroicons/react/24/outline'; // Heroiconsをインポート
 
 const Footer: React.FC = () => {
