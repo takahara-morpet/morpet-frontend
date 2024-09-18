@@ -1,0 +1,4 @@
+.post-list-bar {
+  max-width: 600px; /* 横幅を PostList と揃える */
+  margin: 0 auto; /* 中央に配置する場合 */
+}
