@@ -1,7 +1,10 @@
-"use client"; // これを最初に追加してクライアントコンポーネントとして指定
-import '../globals.css';
+"use client"; // クライアントコンポーネントとして指定
+import './timeline.css'; // CSSファイルをインポート
+
 import React, { useState } from 'react';
 import PostList from '@/components/template/PostList'; // PostListコンポーネントをインポート
+import Footer from '@/components/organisms/Footer';
+import SubmitButton from '@/components/template/SubmitButton'; // SubmitButtonのインポート
 
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'recommend' | 'follow'>('recommend'); // 初期タブは「おすすめ」
@@ -11,7 +14,7 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="relative w-full h-full">
       {/* タブのヘッダー部分 */}
       <div className="tabs">
         <button
@@ -33,7 +36,12 @@ const Page: React.FC = () => {
         {activeTab === 'recommend' && <PostList posts={recommendPosts} />}
         {activeTab === 'follow' && <PostList posts={followPosts} />}
       </div>
-        
+      <div className="fixed -bottom-80 right-80 z-50">
+        <SubmitButton />
+      </div>
+
+
+
     </div>
   );
 };
@@ -117,4 +125,3 @@ const followPosts = [
     profileImage: 'https://example.com/profile10.jpg',
   },
 ];
-

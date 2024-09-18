@@ -12,12 +12,11 @@ const Template: Story<PostProps> = (args) => <Post {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  username: '美川タクシー',
-  handle: 'mikawataxiehime',
+  username: 'test',
+  handle: 'test121212',
   time: '23時間',
-  content: `wwwwwwwwwwwwwwwwwwwww
-  wwwwwwwwwwwwwwwwww
-  wwwwwww`,
+  content: `
+  hello`,
   likes: 52000,
   retweets: 2088,
   replies: 342,
