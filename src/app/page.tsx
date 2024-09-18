@@ -1,9 +1,18 @@
-import Image from "next/image";
+"use client"; // これを最初に追加してクライアントコンポーネントとして指定
 
-export default function Home() {
-  return (
-      <div>
-        <h1>hello</h1>
-      </div>
-  );
-}
+// app/page.tsx
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
+const Home: React.FC = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    // ページが読み込まれたときにタイムラインページにリダイレクト
+    router.push('/timeline');
+  }, [router]);
+
+  return null; // コンテンツがない場合は null を返します
+};
+
+export default Home;
