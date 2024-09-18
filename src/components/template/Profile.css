@@ -1,0 +1,79 @@
+@charset "UTF-8";
+.profile-card {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #e1e8ed;
+  background-color: #ffffff;
+  padding: 20px;
+  color: #14171a;
+}
+.profile-card p {
+  font-size: 0.9em;
+}
+.profile-card p strong {
+  font-weight: bold;
+}
+.profile-card .profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.profile-card .profile-header .avatar {
+  border-radius: 50%;
+  margin-right: 15px;
+  height: 80px;
+  width: 80px;
+  padding: 0%;
+}
+.profile-card .profile-header .name-username {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.profile-card .profile-header .name-username .name {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.profile-card .profile-header .name-username .username {
+  color: #657786;
+  font-size: 1em;
+  margin-top: 5px;
+}
+.profile-card .bio {
+  font-size: 1em;
+  text-align: left;
+  margin: 10px 0;
+}
+.profile-card .profile-details {
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile-card .profile-details div {
+  text-align: left;
+}
+.profile-card .profile-details .birthday {
+  text-align: left;
+  color: #9e9e9e;
+  margin: 5px 0;
+}
+.profile-card .profile-details .stats {
+  display: flex;
+  gap: 20px; /* 各項目の間にスペースを設ける */
+  align-items: flex-end;
+}
+.profile-card .profile-details .stats strong {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #14171a;
+}
+.profile-card .profile-details .stats a {
+  /* Twitterのような青色 */
+  text-decoration: none;
+  font-size: 0.9em;
+  color: #9e9e9e;
+}
+.profile-card .profile-details .stats a:hover {
+  text-decoration: underline; /* ホバー時に下線 */
+}/*# sourceMappingURL=Profile.css.map */

@@ -1,8 +1,7 @@
 "use client"; // これを最初に追加してクライアントコンポーネントとして指定
-import './timeline.css'; // CSSファイルをインポート
+import '../globals.css';
 import React, { useState } from 'react';
 import PostList from '@/components/template/PostList'; // PostListコンポーネントをインポート
-import Footer from '@/components/organisms/Footer';
 
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'recommend' | 'follow'>('recommend'); // 初期タブは「おすすめ」
