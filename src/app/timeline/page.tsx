@@ -1,9 +1,9 @@
 "use client"; // クライアントコンポーネントとして指定
 import './timeline.css'; // CSSファイルをインポート
 import React, { useState } from 'react';
-import PostList from '@/app/components/template/PostList'; // PostListコンポーネントをインポート
-import Footer from '@/app/components/organisms/Footer';
-import SubmitButton from '@/app/components/template/SubmitButton'; // SubmitButtonのインポート
+import PostList from '@/components/template/PostList'; // PostListコンポーネントをインポート
+import Footer from '@/components/organisms/Footer';
+import SubmitButton from '@/components/template/SubmitButton'; // SubmitButtonのインポート
 
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'recommend' | 'follow'>('recommend'); // 初期タブは「おすすめ」

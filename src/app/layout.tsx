@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Footer from "./components/organisms/Footer"; // Footer コンポーネントのインポート
-import SubmitButton from "./components/template/SubmitButton"; // SubmitButton コンポーネントのインポート
+import Footer from "../components/organisms/Footer"; // Footer コンポーネントのインポート
+import SubmitButton from "../components/template/SubmitButton"; // SubmitButton コンポーネントのインポート
 
 
 const geistSans = localFont({
