@@ -1,0 +1,15 @@
+.like-bar-container {
+  display: flex;
+  height: 30px;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.like-bar-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
