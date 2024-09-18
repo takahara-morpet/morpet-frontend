@@ -1,0 +1,51 @@
+.gender-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* バー間のスペース */
+}
+
+.gender-row {
+  display: flex;
+  align-items: center;
+}
+
+.gender-bar {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #f0f0f0; /* バーの背景色 */
+  margin: 0 10px; /* アイコンとバーの間の余白 */
+}
+
+.male-bar {
+  background-color: #007BFF; /* 男性のバーは青 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.female-bar {
+  background-color: #FF4D4D; /* 女性のバーは赤 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.gender-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.male {
+  color: #007BFF;
+}
+
+.female {
+  color: #FF4D4D;
+}

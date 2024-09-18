@@ -2,13 +2,14 @@
 import './timeline.css'; // CSSファイルをインポート
 import React, { useState } from 'react';
 import PostList from '@/components/template/PostList'; // PostListコンポーネントをインポート
+import PostListBar from '@/components/template/PostListBar'; // PostListBarコンポーネントをインポート
 import Footer from '@/components/organisms/Footer';
 import SubmitButton from '@/components/template/SubmitButton'; // SubmitButtonのインポート
 
 const Page: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'recommend' | 'follow'>('recommend'); // 初期タブは「おすすめ」
+  const [activeTab, setActiveTab] = useState<'recommend' | 'follow' | 'controversial'>('recommend'); // 初期タブは「おすすめ」
 
-  const handleTabClick = (tab: 'recommend' | 'follow') => {
+  const handleTabClick = (tab: 'recommend' | 'follow' | 'controversial') => {
     setActiveTab(tab);
   };
 
@@ -28,19 +29,23 @@ const Page: React.FC = () => {
         >
           フォロー中
         </button>
+        <button
+          className={`tab-button ${activeTab === 'controversial' ? 'active' : ''}`}
+          onClick={() => handleTabClick('controversial')}
+        >
+          賛否両論
+        </button>
       </div>
 
-      {/* タブに応じてPostListを表示 */}
+      {/* タブに応じてPostListやPostListBarを表示 */}
       <div className="post-list-container">
         {activeTab === 'recommend' && <PostList posts={recommendPosts} />}
         {activeTab === 'follow' && <PostList posts={followPosts} />}
+        {activeTab === 'controversial' && <PostListBar posts={controversialPosts} />} {/* PostListBar に変更 */}
       </div>
       <div className="fixed -bottom-80 right-80 z-50">
         <SubmitButton />
       </div>
-
-
-
     </div>
   );
 };
@@ -93,34 +98,46 @@ const followPosts = [
     replies: 8,
     profileImage: 'https://example.com/profile4.jpg',
   },
+];
+
+
+// 賛否両論の投稿データ
+const controversialPosts = [
   {
-    username: '田中 直子',
-    handle: 'naoko_tanaka',
-    time: '8時間前',
-    content: '友達とカフェに行きました。楽しい時間を過ごしました。',
-    likes: 40,
-    retweets: 9,
-    replies: 13,
-    profileImage: 'https://example.com/profile8.jpg',
+    username: '木村 拓',
+    handle: 'taku_kimura',
+    time: '5時間前',
+    content: '最近のトレンドには賛否があるけど、僕は肯定派。',
+    likes: 50,
+    retweets: 20,
+    replies: 30,
+    profileImage: 'https://example.com/profile5.jpg',
+    malePercentage: 60,
+    femalePercentage: 40,
   },
   {
-    username: '本田 圭',
-    handle: 'kei_honda',
-    time: '9時間前',
-    content: '新しい趣味を始めました。頑張ります！',
-    likes: 60,
-    retweets: 15,
-    replies: 25,
-    profileImage: 'https://example.com/profile9.jpg',
-  },
-  {
-    username: '井上 真',
-    handle: 'makoto_inoue',
-    time: '10時間前',
-    content: '今日は天気が良かったので散歩しました。',
-    likes: 45,
+    username: '田中 美沙',
+    handle: 'misa_tanaka',
+    time: '6時間前',
+    content: 'その意見には反対だけど、意見交換は大事だね。',
+    likes: 35,
     retweets: 10,
-    replies: 17,
-    profileImage: 'https://example.com/profile10.jpg',
+    replies: 22,
+    profileImage: 'https://example.com/profile6.jpg',
+    malePercentage: 55,
+    femalePercentage: 45,
+  },
+  {
+    username: '中村 勇',
+    handle: 'isamu_nakamura',
+    time: '7時間前',
+    content: '議論の余地がある問題だけど、自分の立場を明確にしたい。',
+    likes: 45,
+    retweets: 12,
+    replies: 19,
+    profileImage: 'https://example.com/profile7.jpg',
+    malePercentage: 50,
+    femalePercentage: 50,
   },
 ];
+
