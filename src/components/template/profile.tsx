@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import "./Profile.scss";
+import Link from "next/link";
 
 interface ProfileProps {
   icon: string;
@@ -44,8 +45,12 @@ const ProfileCard: React.FC<ProfileProps> = ({
           <p>{birthday}</p>
         </div>
         <div className="stats">
-          <a><strong>{followers.length}</strong>Followers</a>
-          <a><strong>{following.length}</strong>Following</a>
+          <Link href="/followers">
+            <strong>{followers.length}</strong>Followers
+          </Link>
+          <Link href="/followers">
+            <strong>{following.length}</strong>Following
+          </Link>
         </div>
       </div>
     </div>

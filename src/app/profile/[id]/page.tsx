@@ -1,5 +1,5 @@
 "use client"; // これを最初に追加してクライアントコンポーネントとして指定
-import '../timeline/timeline.css'; // CSSファイルをインポート
+import '../../timeline/timeline.css'; // CSSファイルをインポート
 
 import { useRouter, useParams } from 'next/navigation';
 import React, { useState } from 'react';

@@ -25,3 +25,11 @@ body {
     text-wrap: balance;
   }
 }
+
+/* 全体コンテナのスタイル */
+.page-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
