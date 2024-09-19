@@ -26,6 +26,18 @@ export const fetchUserDetail = async (id: string): Promise<UserDetail> => {
   }
 };
 
+export const createUser = async (userData: UserDetail): Promise<UserDetail> => {
+  try {
+    console.log("Sending POST request to:", USERS_URL);
+    const response = await axios.post(USERS_URL, userData);
+    console.log("Response data:", response.data);
+    return response.data;
+  } catch (error) {
+    console.log("Error creating user:", error);
+    throw error;
+  }
+};
+
 // export const fetchMyAccount = async (): Promise<UserDetail> => {
 //   try {
 //     const response = await axios.get(PROFILE_URL);

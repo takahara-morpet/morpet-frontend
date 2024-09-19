@@ -18,13 +18,13 @@ const UserIcon: React.FC<UserIconProps> = ({ profileImageUrl, name, id }) => {
       onClick={() => handleProfileClick(id)} // Clicking magic happening here
     >
       <div className="icon-container">
-        <Image
+        {/* <Image
           src={profileImageUrl}
           alt={`${name}'s profile`}
           width={80}
           height={80}
           className="icon-avatar"
-        />
+        /> */}
         <div className="icon-text">
           <h2 className="icon-name">{name}</h2>
           <p className="icon-id">@{id}</p>

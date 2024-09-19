@@ -1,10 +1,10 @@
 "use client"; 
 import React, { useState } from 'react';
 import FloatingButton from '../modules/FloatingButton';
-import PostBox from '../organisms/PostBox';
+import PostBox, { PostBoxProps } from '../organisms/PostBox';
 
 
-const SubmitButton = () => {
+const SubmitButton: React.FC<PostBoxProps>  = ({onPostCreate}) => {
   const [showPostBox, setShowPostBox] = useState(false); // PostBoxの表示状態を管理
 
   // PostBoxの表示を切り替える関数
@@ -23,7 +23,7 @@ const SubmitButton = () => {
       {showPostBox && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="relative z-10">
-            <PostBox />
+            <PostBox onPostCreate={onPostCreate} />
           </div>
           <div className="absolute inset-0" onClick={togglePostBox} />
         </div>

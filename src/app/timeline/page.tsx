@@ -1,15 +1,43 @@
 "use client"; // クライアントコンポーネントとして指定
 import '../globals.css'; // CSSファイルをインポート
 
-import React, { useState } from 'react';
-import PostList from '@/components/template/PostList'; // PostListコンポーネントをインポート
+import React, { useEffect, useState } from 'react';
+import PostList, { PostData } from '@/components/template/PostList'; // PostListコンポーネントをインポート
 
 import PostListBar from '@/components/template/PostListBar'; // PostListBarコンポーネントをインポート
 
 import SubmitButton from '@/components/template/SubmitButton'; // SubmitButtonのインポート
+import { PostGetResponse } from '@/types/response/post';
+import { fetchPosts } from '@/lib/api/post';
 
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'recommend' | 'follow' | 'controversial'>('recommend'); // 初期タブは「おすすめ」
+  const [error, setError] = useState<Error | null>(null);
+  const [recommendPosts, setPosts] = useState<PostData[] | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const postlist = await fetchPosts();
+        const mappedPosts = postlist.map(post => ({
+          username: "test",
+          handle: "handle",
+          time: "time",
+          content: post.content,
+          likes: 0,
+          replies: 0,
+          profileImage: "/images/suga.jpg",
+        })); // PostData型に変換
+        setPosts(mappedPosts);
+      } catch (err) {
+        setError(err as Error);
+      }
+    };
+    fetchData();
+  }, []);
+  const handleNewPost = (newPost: PostData) => {
+    setPosts([newPost, ...(recommendPosts || [])]); // 新しい投稿を先頭に追加
+  };
 
   const handleTabClick = (tab: 'recommend' | 'follow' | 'controversial') => {
     setActiveTab(tab);
@@ -41,12 +69,12 @@ const Page: React.FC = () => {
 
       {/* タブに応じてPostListやPostListBarを表示 */}
       <div className="post-list-container">
-        {activeTab === 'recommend' && <PostList posts={recommendPosts} />}
+        {activeTab === 'recommend' && <PostList posts={recommendPosts|| []} />}
         {activeTab === 'follow' && <PostList posts={followPosts} />}
         {activeTab === 'controversial' && <PostListBar posts={controversialPosts} />} {/* PostListBar に変更 */}
       </div>
       <div className="fixed -bottom-80 right-80 z-50">
-        <SubmitButton />
+        <SubmitButton onPostCreate={handleNewPost} />
       </div>
     </div>
   );
@@ -54,29 +82,29 @@ const Page: React.FC = () => {
 
 export default Page;
 
-// おすすめの投稿データ
-const recommendPosts = [
-  {
-    username: '山田 太郎',
-    handle: 'taro_yamada',
-    time: '1時間前',
-    content: '今日はとても楽しかった！',
-    likes: 20,
-    retweets: 5,
-    replies: 10,
-    profileImage: 'https://example.com/profile1.jpg',
-  },
-  {
-    username: '佐藤 花子',
-    handle: 'hanako_sato',
-    time: '2時間前',
-    content: '美味しいご飯を食べました！',
-    likes: 30,
-    retweets: 10,
-    replies: 5,
-    profileImage: 'https://example.com/profile2.jpg',
-  },
-];
+// // おすすめの投稿データ
+// const recommendPosts = [
+//   {
+//     username: '山田 太郎',
+//     handle: 'taro_yamada',
+//     time: '1時間前',
+//     content: '今日はとても楽しかった！',
+//     likes: 20,
+//     retweets: 5,
+//     replies: 10,
+//     profileImage: 'https://example.com/profile1.jpg',
+//   },
+//   {
+//     username: '佐藤 花子',
+//     handle: 'hanako_sato',
+//     time: '2時間前',
+//     content: '美味しいご飯を食べました！',
+//     likes: 30,
+//     retweets: 10,
+//     replies: 5,
+//     profileImage: 'https://example.com/profile2.jpg',
+//   },
+// ];
 
 // フォロー中の投稿データ
 const followPosts = [

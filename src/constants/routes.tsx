@@ -6,6 +6,8 @@ export const PRO_SERVER_URL = "https://graph.shion.pro/api/v0"
 export const USERS_URL = `${getEndpoint()}/users`
 export const USERS_DETAIL_URL = `${getEndpoint()}/users`
 
+export const POSTS_URL = `${getEndpoint()}/posts`
+
 
 // export const HOME_URL = `${getEndpoint()}/events`
 // export const PROFILE_URL = `${getEndpoint()}/user/@me`

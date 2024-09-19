@@ -2,14 +2,14 @@
 import React from 'react';
 import Post from '../organisms/Post'; // Postコンポーネントをインポート
 
-interface PostData {
+export interface PostData {
   username: string;
-  handle: string;
-  time: string;
+  handle?: string;
+  time?: string;
   content: string;
-  likes: number;
-  replies: number;
-  profileImage: string;
+  likes?: number;
+  replies?: number;
+  profileImage?: string;
 }
 
 interface PostListProps {
@@ -23,12 +23,12 @@ const PostList: React.FC<PostListProps> = ({ posts }) => {
         <Post
           key={index}
           username={post.username}
-          handle={post.handle}
-          time={post.time}
+          handle={post.handle ?? ''}  
+          time={post.time ?? 'Unknown'} 
           content={post.content}
-          likes={post.likes}
-          replies={post.replies}
-          profileImage={post.profileImage}
+          likes={post.likes ?? 0}       
+          replies={post.replies ?? 0}   
+          profileImage={post.profileImage ?? ''}
         />
       ))}
     </div>
