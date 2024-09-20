@@ -1,17 +1,19 @@
 "use client"; // クライアントコンポーネントとして指定
-import '../globals.css'; // CSSファイルをインポート
+import "../globals.css"; // CSSファイルをインポート
 
-import React, { useEffect, useState } from 'react';
-import PostList, { PostData } from '@/components/template/PostList'; // PostListコンポーネントをインポート
+import React, { useEffect, useState } from "react";
+import PostList, { PostData } from "@/components/template/PostList"; // PostListコンポーネントをインポート
 
-import PostListBar from '@/components/template/PostListBar'; // PostListBarコンポーネントをインポート
+import PostListBar from "@/components/template/PostListBar"; // PostListBarコンポーネントをインポート
 
-import SubmitButton from '@/components/template/SubmitButton'; // SubmitButtonのインポート
-import { PostGetResponse } from '@/types/response/post';
-import { fetchPosts } from '@/lib/api/post';
+import SubmitButton from "@/components/template/SubmitButton"; // SubmitButtonのインポート
+import { PostGetResponse } from "@/types/response/post";
+import { fetchPosts } from "@/lib/api/post";
 
 const Page: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'recommend' | 'follow' | 'controversial'>('recommend'); // 初期タブは「おすすめ」
+  const [activeTab, setActiveTab] = useState<
+    "recommend" | "follow" | "controversial"
+  >("recommend"); // 初期タブは「おすすめ」
   const [error, setError] = useState<Error | null>(null);
   const [recommendPosts, setPosts] = useState<PostData[] | null>(null);
 
@@ -19,7 +21,7 @@ const Page: React.FC = () => {
     const fetchData = async () => {
       try {
         const postlist = await fetchPosts();
-        const mappedPosts = postlist.map(post => ({
+        const mappedPosts = postlist.map((post) => ({
           username: "test",
           handle: "handle",
           time: "time",
@@ -39,7 +41,7 @@ const Page: React.FC = () => {
     setPosts([newPost, ...(recommendPosts || [])]); // 新しい投稿を先頭に追加
   };
 
-  const handleTabClick = (tab: 'recommend' | 'follow' | 'controversial') => {
+  const handleTabClick = (tab: "recommend" | "follow" | "controversial") => {
     setActiveTab(tab);
   };
 
@@ -48,20 +50,20 @@ const Page: React.FC = () => {
       {/* タブのヘッダー部分 */}
       <div className="tabs">
         <button
-          className={`tab-button ${activeTab === 'recommend' ? 'active' : ''}`}
-          onClick={() => handleTabClick('recommend')}
+          className={`tab-button ${activeTab === "recommend" ? "active" : ""}`}
+          onClick={() => handleTabClick("recommend")}
         >
           おすすめ
         </button>
         <button
-          className={`tab-button ${activeTab === 'follow' ? 'active' : ''}`}
-          onClick={() => handleTabClick('follow')}
+          className={`tab-button ${activeTab === "follow" ? "active" : ""}`}
+          onClick={() => handleTabClick("follow")}
         >
           フォロー中
         </button>
         <button
-          className={`tab-button ${activeTab === 'controversial' ? 'active' : ''}`}
-          onClick={() => handleTabClick('controversial')}
+          className={`tab-button ${activeTab === "controversial" ? "active" : ""}`}
+          onClick={() => handleTabClick("controversial")}
         >
           賛否両論
         </button>
@@ -69,9 +71,12 @@ const Page: React.FC = () => {
 
       {/* タブに応じてPostListやPostListBarを表示 */}
       <div className="post-list-container">
-        {activeTab === 'recommend' && <PostList posts={recommendPosts|| []} />}
-        {activeTab === 'follow' && <PostList posts={followPosts} />}
-        {activeTab === 'controversial' && <PostListBar posts={controversialPosts} />} {/* PostListBar に変更 */}
+        {activeTab === "recommend" && <PostList posts={recommendPosts || []} />}
+        {activeTab === "follow" && <PostList posts={followPosts} />}
+        {activeTab === "controversial" && (
+          <PostListBar posts={controversialPosts} />
+        )}{" "}
+        {/* PostListBar に変更 */}
       </div>
       <div className="fixed -bottom-80 right-80 z-50">
         <SubmitButton onPostCreate={handleNewPost} />
@@ -109,65 +114,63 @@ export default Page;
 // フォロー中の投稿データ
 const followPosts = [
   {
-    username: 'フォロー中ユーザー1',
-    handle: 'follow_user1',
-    time: '3時間前',
-    content: '今日はランニングをしました。',
+    username: "フォロー中ユーザー1",
+    handle: "follow_user1",
+    time: "3時間前",
+    content: "今日はランニングをしました。",
     likes: 15,
     retweets: 4,
     replies: 6,
-    profileImage: 'https://example.com/profile3.jpg',
+    profileImage: "https://example.com/profile3.jpg",
   },
   {
-    username: 'フォロー中ユーザー2',
-    handle: 'follow_user2',
-    time: '4時間前',
-    content: '新しい本を読みました。面白かった！',
+    username: "フォロー中ユーザー2",
+    handle: "follow_user2",
+    time: "4時間前",
+    content: "新しい本を読みました。面白かった！",
     likes: 25,
     retweets: 7,
     replies: 8,
-    profileImage: 'https://example.com/profile4.jpg',
+    profileImage: "https://example.com/profile4.jpg",
   },
 ];
-
 
 // 賛否両論の投稿データ
 const controversialPosts = [
   {
-    username: '木村 拓',
-    handle: 'taku_kimura',
-    time: '5時間前',
-    content: '最近のトレンドには賛否があるけど、僕は肯定派。',
+    username: "木村 拓",
+    handle: "taku_kimura",
+    time: "5時間前",
+    content: "最近のトレンドには賛否があるけど、僕は肯定派。",
     likes: 50,
     retweets: 20,
     replies: 30,
-    profileImage: 'https://example.com/profile5.jpg',
+    profileImage: "https://example.com/profile5.jpg",
     malePercentage: 60,
     femalePercentage: 40,
   },
   {
-    username: '田中 美沙',
-    handle: 'misa_tanaka',
-    time: '6時間前',
-    content: 'その意見には反対だけど、意見交換は大事だね。',
+    username: "田中 美沙",
+    handle: "misa_tanaka",
+    time: "6時間前",
+    content: "その意見には反対だけど、意見交換は大事だね。",
     likes: 35,
     retweets: 10,
     replies: 22,
-    profileImage: 'https://example.com/profile6.jpg',
+    profileImage: "https://example.com/profile6.jpg",
     malePercentage: 55,
     femalePercentage: 45,
   },
   {
-    username: '中村 勇',
-    handle: 'isamu_nakamura',
-    time: '7時間前',
-    content: '議論の余地がある問題だけど、自分の立場を明確にしたい。',
+    username: "中村 勇",
+    handle: "isamu_nakamura",
+    time: "7時間前",
+    content: "議論の余地がある問題だけど、自分の立場を明確にしたい。",
     likes: 45,
     retweets: 12,
     replies: 19,
-    profileImage: 'https://example.com/profile7.jpg',
+    profileImage: "https://example.com/profile7.jpg",
     malePercentage: 50,
     femalePercentage: 50,
   },
 ];
-

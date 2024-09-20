@@ -1,6 +1,5 @@
 export type PostCreateRequest = {
-    userId: number;
-    content: string;
-    category: string;
-  };
-  
+  userId: number;
+  content: string;
+  category: string;
+};
