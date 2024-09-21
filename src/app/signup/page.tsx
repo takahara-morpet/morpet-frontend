@@ -11,7 +11,7 @@ const SignUpPage: React.FC = () => {
     age: 0,
     name: "",
     profile: "",
-    profileImageUrl: "/images/suga.jpg",
+    profileImageUrl: '"/images/suga.jpg"',
     gender: "",
     mbti: "",
   });
