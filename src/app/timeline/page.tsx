@@ -3,11 +3,8 @@ import "../globals.css"; // CSSファイルをインポート
 
 import React, { useEffect, useState } from "react";
 import PostList, { PostData } from "@/components/template/PostList"; // PostListコンポーネントをインポート
-
 import PostListBar from "@/components/template/PostListBar"; // PostListBarコンポーネントをインポート
-
 import SubmitButton from "@/components/template/SubmitButton"; // SubmitButtonのインポート
-import { PostGetResponse } from "@/types/response/post";
 import { fetchPosts } from "@/lib/api/post";
 
 const Page: React.FC = () => {
