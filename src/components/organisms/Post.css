@@ -31,7 +31,8 @@
   margin-right: 5px;
 }
 
-.handle, .time {
+.handle,
+.time {
   color: #657786;
   margin-right: 5px;
 }
@@ -107,4 +108,38 @@
     transform: scale(50) rotate(45deg);
     opacity: 0;
   }
+}
+.liked {
+  color: red;
+}
+
+.post-content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-link-content {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-link-content:hover {
+  background-color: #f5f8fa; /* ホバー時の背景色 */
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px;
+}
+
+.post-action {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.post-action:hover .icon {
+  color: #1da1f2; /* ホバー時のアイコン色 */
 }

@@ -26,7 +26,7 @@ const ProfileCard: React.FC<ProfileProps> = ({
   return (
     <div className="profile-card">
       <div className="profile-header">
-        <Image src={profileImageUrl} alt={`${name}'s profile`} width={80} height={80} className="avatar" />
+        <Image src="/images/suga.jpg" alt={`${name}'s profile`} width={80} height={80} className="avatar" />
         <div className="name-username">
           <h2 className="name">{name}</h2>
           <p className="username">@{id}</p>

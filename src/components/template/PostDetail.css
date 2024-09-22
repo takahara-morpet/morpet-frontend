@@ -19,4 +19,13 @@
     max-width: 100px;
     border-radius: 50%;
   }
+/* PostDetail.css */
+
+.post-detail-container {
+    perspective: 1000px;
+  }
+  
+  .post-detail-container > * {
+    transform-style: preserve-3d;
+  }
   

@@ -1,7 +1,6 @@
 "use client";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { PostData } from "@/components/template/PostList"; // PostData型をインポート
+import { PostData } from "@/components/template/PostList";
 import { useParams } from "next/navigation";
 import PostDetail from "@/components/template/PostDetail";
 import { fetchPosts } from "@/lib/api/post";
@@ -9,11 +8,10 @@ import { fetchPosts } from "@/lib/api/post";
 const PostPage = () => {
   const { id } = useParams();
   const [post, setPost] = useState<PostData | null>(null);
-  const [allPosts, setAllPosts] = useState<PostData[] | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    const fetchPostsData = async () => {
+    const fetchPostData = async () => {
       try {
         const postlist = await fetchPosts();
         const mappedPosts = postlist.map((post) => ({
@@ -25,23 +23,19 @@ const PostPage = () => {
           likes: 0,
           replies: 0,
           profileImage: "/images/suga.jpg",
-        })); // PostData型に変換
-        setAllPosts(mappedPosts);
+        }));
+        const postData = mappedPosts.find((post) => post.id === Number(id));
+        setPost(postData || null);
       } catch (err) {
         setError(err as Error);
-        console.log(error);
+        console.log(err);
       }
     };
-    fetchPostsData();
-    if (id && allPosts) {
-      const postData = allPosts.find((post) => post.id === Number(id));
-      setPost(postData || null);
-      console.log(error);
-    }
-  }, [id,allPosts]);
+    fetchPostData();
+  }, [id]);
 
   if (!post) {
-    return <p>Loading...</p>; // データがない場合、読み込み中の表示
+    return <p>Loading...</p>;
   }
 
   return <PostDetail post={post} />;
