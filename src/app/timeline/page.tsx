@@ -18,8 +18,9 @@ const Page: React.FC = () => {
     const fetchData = async () => {
       try {
         const postlist = await fetchPosts();
-        const mappedPosts = postlist.map((post) => ({
-          username: "test",
+        const mappedPosts = postlist.map((post, index) => ({
+          id: post.id,
+          username: String(post.userId) + "test",
           handle: "handle",
           time: "time",
           content: post.content,
@@ -111,6 +112,7 @@ export default Page;
 // フォロー中の投稿データ
 const followPosts = [
   {
+    id: 32222222,
     username: "フォロー中ユーザー1",
     handle: "follow_user1",
     time: "3時間前",
@@ -121,6 +123,7 @@ const followPosts = [
     profileImage: "https://example.com/profile3.jpg",
   },
   {
+    id: 85743,
     username: "フォロー中ユーザー2",
     handle: "follow_user2",
     time: "4時間前",

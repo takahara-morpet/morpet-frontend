@@ -30,6 +30,7 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
       content: text, // テキストを postData として設定
     };
     const postData: PostData = {
+      id:1,
       username: "string",
       content: text,
       likes: 0,

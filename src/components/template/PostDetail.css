@@ -1,0 +1,22 @@
+.post-detail-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .post-detail-container h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .post-detail-container p {
+    margin-bottom: 8px;
+  }
+  
+  .post-detail-container img {
+    max-width: 100px;
+    border-radius: 50%;
+  }
+  

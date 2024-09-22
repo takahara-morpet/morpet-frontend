@@ -22,30 +22,30 @@ const Post: React.FC<PostProps> = ({
   profileImage,
 }) => {
   return (
-    <div className="post">
-      <img src={profileImage} alt="Profile" className="profile-img" />
-      <div className="post-body">
-        <div className="post-header">
-          <span className="username">{username}</span>
-          <span className="handle">@{handle}</span>
-          <span className="time">・{time}</span>
+    <div className="post anim-box kiran">
+    <img src={profileImage} alt="Profile" className="profile-img" />
+    <div className="post-body">
+      <div className="post-header">
+        <span className="username">{username}</span>
+        <span className="handle">@{handle}</span>
+        <span className="time">・{time}</span>
+      </div>
+      <div className="post-content">{content}</div>
+      <div className="post-actions">
+        {/* 返信ボタン */}
+        <div className="post-action">
+          <ChatBubbleLeftIcon className="icon" />
+          <span>{replies}</span>
         </div>
-        <div className="post-content">{content}</div>
-        <div className="post-actions">
-          {/* 返信ボタン */}
-          <div className="post-action">
-            <ChatBubbleLeftIcon className="icon" />
-            <span>{replies}</span>
-          </div>
 
-          {/* いいねボタン */}
-          <div className="post-action">
-            <HeartIcon className="icon" />
-            <span>{likes}</span>
-          </div>
+        {/* いいねボタン */}
+        <div className="post-action">
+          <HeartIcon className="icon" />
+          <span>{likes}</span>
         </div>
       </div>
     </div>
+  </div>
   );
 };
 
