@@ -15,6 +15,7 @@ interface PostProps {
   replies: number;
   profileImage: string;
   link: string;
+  onLike: () => void; // いいね時のコールバックを受け取る
 }
 
 const Post: React.FC<PostProps> = ({
@@ -26,6 +27,7 @@ const Post: React.FC<PostProps> = ({
   replies,
   profileImage,
   link,
+  onLike,
 }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
@@ -37,6 +39,7 @@ const Post: React.FC<PostProps> = ({
     } else {
       setIsLiked(true);
       setLikesCount(likesCount + 1);
+      onLike();
     }
   };
 

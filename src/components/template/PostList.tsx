@@ -1,8 +1,9 @@
 // PostList.tsx
-import React from "react";
+import React, { useState } from "react";
 import Post from "../organisms/Post"; // Postコンポーネントをインポート
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import LikeAnimation from "../modules/LikeAnimation";
 
 export interface PostData {
   id: number;
@@ -20,8 +21,18 @@ interface PostListProps {
 }
 
 const PostList: React.FC<PostListProps> = ({ posts }) => {
+  const [showLikeAnimation, setShowLikeAnimation] = useState(false);
+
+  const handleLike = () => {
+    setShowLikeAnimation(true);
+    setTimeout(() => {
+      setShowLikeAnimation(false);
+    }, 1100); // アニメーションの継続時間と一致
+  };
   return (
     <div className="post-list">
+      {" "}
+      <LikeAnimation isVisible={showLikeAnimation} />
       <AnimatePresence mode="wait">
         {posts.map((post, index) => (
           <motion.div
@@ -40,6 +51,7 @@ const PostList: React.FC<PostListProps> = ({ posts }) => {
               replies={post.replies ?? 0}
               profileImage={post.profileImage ?? ""}
               link={`/timeline/${post.id}`}
+              onLike={handleLike}
             />
           </motion.div>
         ))}
