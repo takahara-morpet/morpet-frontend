@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Reply from "../organisms/Reply";
 import { fetchReplies } from "@/lib/api/reply";
-import { context } from "@react-three/fiber";
+
 
 interface ReplyData {
   id: number;
@@ -52,20 +52,3 @@ const ReplyList = () => {
 
 export default ReplyList;
 
-// フォロー中の投稿データ
-const dummyReplys = [
-  {
-    id: 32222222,
-    senderName: "フォロー中ユーザー1",
-    time: "3時間前",
-    content: "僕もそれわかります",
-    profileImage: "https://example.com/profile3.jpg",
-  },
-  {
-    id: 3222322222,
-    senderName: "フォロー中ユーザー2",
-    time: "1時間前",
-    content: "正直許せませんよね",
-    profileImage: "https://example.com/profile3.jpg",
-  },
-];
