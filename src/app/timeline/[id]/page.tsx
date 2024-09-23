@@ -35,11 +35,14 @@ const PostPage = () => {
     };
     fetchPostData();
   }, [id]);
-  const handleAddReply = (content: string) => {};
+  const handleAddReply = (content: string) => {
+    console.log(content);
+  };
 
   if (!post) {
     return <p>Loading...</p>;
   }
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div>

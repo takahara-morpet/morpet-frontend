@@ -42,7 +42,7 @@ const Page: React.FC = () => {
   const handleTabClick = (tab: "recommend" | "follow" | "controversial") => {
     setActiveTab(tab);
   };
-
+  if (error) return <div>Error: {error.message}</div>;
   return (
     <div className="relative w-full h-full">
       {/* タブのヘッダー部分 */}

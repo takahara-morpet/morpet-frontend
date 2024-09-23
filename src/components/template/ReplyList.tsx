@@ -14,8 +14,9 @@ interface ReplyListProps {
 const ReplyList: React.FC<ReplyListProps> = ({ replys }) => {
   return (
     <div className="reply-list">
-      {replys.map((reply, index) => (
+      {replys.map((reply) => (
         <Reply
+          key={reply.id}
           senderName={reply.senderName}
           time={reply.time}
           content={reply.content}

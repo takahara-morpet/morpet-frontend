@@ -30,7 +30,7 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
       content: text, // テキストを postData として設定
     };
     const postData: PostData = {
-      id:1,
+      id: 1,
       username: "string",
       content: text,
       likes: 0,
@@ -39,7 +39,7 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
     };
 
     try {
-      const createdPost = await createPosts(postCreateRequest);
+      await createPosts(postCreateRequest);
       console.log("投稿が成功しました");
       onPostCreate(postData); // 新しい投稿を親コンポーネントに通知
       setText(""); // 投稿後にテキストをクリア
@@ -49,6 +49,7 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
       setError("投稿に失敗しました。");
     }
   };
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="post-box">
