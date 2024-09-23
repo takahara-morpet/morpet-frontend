@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./PostBox.css";
-import { PostGetResponse } from "@/types/response/post";
 import { createPosts } from "@/lib/api/post";
 import { PostCreateRequest } from "@/types/request/post";
 import { PostData } from "../template/PostList";
