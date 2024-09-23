@@ -31,7 +31,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #1d9bf0;
+  background-color: #ff4d4d;
   color: white;
 }
 
@@ -68,13 +68,13 @@ body {
 }
 
 .tab-button.active {
-  color: #1d9bf0;
-  border-bottom: 2px solid #1d9bf0;
+  color: #ff4d4d;
+  border-bottom: 2px solid #ff4d4d;
   font-weight: bold;
 }
 
 .tab-button:hover {
-  color: #1d9bf0;
+  color: #ff4d4d;
 }
 
 /* 投稿リストコンテナ */
