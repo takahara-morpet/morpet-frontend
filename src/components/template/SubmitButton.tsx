@@ -22,7 +22,7 @@ const SubmitButton: React.FC<PostBoxProps>  = ({onPostCreate}) => {
       {/* PostBoxの表示（ボタンを押したら画面中央に表示） */}
       {showPostBox && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="relative">
+          <div className="relative z-50" onClick={(e) => e.stopPropagation()}>
             <PostBox onPostCreate={onPostCreate} />
           </div>
           <div className="absolute inset-0" onClick={togglePostBox} />
