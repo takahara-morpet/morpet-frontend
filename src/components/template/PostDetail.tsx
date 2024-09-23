@@ -2,23 +2,25 @@ import React from "react";
 import { motion } from "framer-motion";
 import { PostData } from "../template/PostList";
 import "./PostDetail.css";
+import ReplyForm from "../organisms/ReplyForm";
 
 interface PostDetailProps {
   post: PostData;
 }
 
 const PostDetail: React.FC<PostDetailProps> = ({ post }) => {
+
   const containerVariants = {
     hidden: {
       opacity: 0,
-      rotateX:100,
+      rotateX: 100,
       rotateY: -120,
       scale: 3,
       perspective: 800,
     },
     visible: {
       opacity: 1,
-      rotateX:0,
+      rotateX: 0,
       rotateY: 0,
       scale: 1,
       perspective: 800,
@@ -57,6 +59,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ post }) => {
         animate={{ z: 0, opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
       />
+     
     </motion.div>
   );
 };

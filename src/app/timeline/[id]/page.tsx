@@ -4,6 +4,8 @@ import { PostData } from "@/components/template/PostList";
 import { useParams } from "next/navigation";
 import PostDetail from "@/components/template/PostDetail";
 import { fetchPosts } from "@/lib/api/post";
+import ReplyForm from "@/components/organisms/ReplyForm";
+import ReplyList from "@/components/template/ReplyList";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -33,12 +35,37 @@ const PostPage = () => {
     };
     fetchPostData();
   }, [id]);
+  const handleAddReply = (content: string) => {};
 
   if (!post) {
     return <p>Loading...</p>;
   }
 
-  return <PostDetail post={post} />;
+  return (
+    <div>
+      <PostDetail post={post} />
+      <ReplyForm onSubmit={handleAddReply} />
+      <ReplyList replys={dummyReplys} />
+    </div>
+  );
 };
 
 export default PostPage;
+
+// フォロー中の投稿データ
+const dummyReplys = [
+  {
+    id: 32222222,
+    senderName: "フォロー中ユーザー1",
+    time: "3時間前",
+    content: "僕もそれわかります",
+    profileImage: "https://example.com/profile3.jpg",
+  },
+  {
+    id: 3222322222,
+    senderName: "フォロー中ユーザー2",
+    time: "1時間前",
+    content: "正直許せませんよね",
+    profileImage: "https://example.com/profile3.jpg",
+  },
+];
