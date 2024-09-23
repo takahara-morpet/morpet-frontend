@@ -43,7 +43,7 @@
 }
 
 .post-button {
-  background-color: #1da1f2;
+  background-color: #ff4d4d;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -53,5 +53,5 @@
 }
 
 .post-button:hover {
-  background-color: #0d8fdb;
+  background-color: #e64545;
 }
