@@ -5,17 +5,18 @@ import { useParams } from "next/navigation";
 import PostDetail from "@/components/template/PostDetail";
 import { fetchPosts } from "@/lib/api/post";
 import ReplyForm from "@/components/organisms/ReplyForm";
-import ReplyList from "@/components/template/ReplyList";
+import ReplyList, { ReplyData } from "@/components/template/ReplyList";
 import { ReplyCreateRequest } from "@/types/request/reply";
-import { createReply } from "@/lib/api/reply";
+import { createReply, fetchRepliesById } from "@/lib/api/reply";
 
 const PostPage = () => {
   const { id } = useParams();
   const [post, setPost] = useState<PostData | null>(null);
   const [error, setError] = useState<Error | null>(null);
-
+  const [replies, setReplies] = useState<ReplyData[] | null>(null);
   useEffect(() => {
     fetchPostData();
+    fetchRepliesByPostId();
   }, [id]);
 
   const fetchPostData = async () => {
@@ -38,14 +39,33 @@ const PostPage = () => {
       console.log(err);
     }
   };
-  const handleAddReply = (content: string) => {
+  const fetchRepliesByPostId = async () => {
+    try {
+      const replyGetResponse = await fetchRepliesById(String(id));
+      const replyList = replyGetResponse.map((reply) => ({
+        id: reply.id,
+        senderName: String(reply.senderId) + "user",
+        time: reply.sentAt,
+        content: reply.content,
+        profileImage: "/images/suga.jpg",
+      }));
+      setReplies(replyList);
+    } catch (err) {
+      console.error("Failed to fetch replies:", err);
+    }
+  };
+  const handleAddReply = async (content: string) => {
     const newReplyRequest: ReplyCreateRequest = {
       postId: Number(id),
-      senderId: Number(0),
+      senderId: Number(1),
       content: content,
     };
-    createReply(newReplyRequest);
-    
+    try {
+      await createReply(newReplyRequest);
+      await fetchRepliesByPostId();
+    } catch (err) {
+      setError(err as Error);
+    }
   };
 
   if (!post) {
@@ -57,7 +77,7 @@ const PostPage = () => {
     <div>
       <PostDetail post={post} />
       <ReplyForm onSubmit={handleAddReply} />
-      <ReplyList />
+      {replies && <ReplyList replyList={replies} />}
     </div>
   );
 };
