@@ -1,7 +1,7 @@
 import React from 'react';
 import PostBar, { PostBarProps } from '../organisms/PostBar'; // PostBarコンポーネントをインポート
 import './PostListBar.css'; // CSSをインポート
-import postcss from 'postcss';
+
 
 interface PostListBarProps {
   posts:PostBarProps[];
