@@ -10,8 +10,8 @@ interface ProfileProps {
   profileImageUrl: string;
   gender: string;
   mbti: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 const ProfileCard: React.FC<ProfileProps> = ({
@@ -26,7 +26,13 @@ const ProfileCard: React.FC<ProfileProps> = ({
   return (
     <div className="profile-card">
       <div className="profile-header">
-        <Image src={`${profileImageUrl}`} alt={`${name}'s profile`} width={80} height={80} className="avatar" />
+        <Image
+          src={`${profileImageUrl}`}
+          alt={`${name}'s profile`}
+          width={80}
+          height={80}
+          className="avatar"
+        />
         <div className="name-username">
           <h2 className="name">{name}</h2>
           <p className="username">@{id}</p>
@@ -35,9 +41,15 @@ const ProfileCard: React.FC<ProfileProps> = ({
       <p className="bio">{profile}</p>
       <div className="profile-details">
         <div>
-          <p><strong>性別:</strong> {gender}</p>
-          <p><strong>年齢:</strong> {age}歳</p>
-          <p><strong>MBTI:</strong> {mbti}</p>
+          <p>
+            <strong>性別:</strong> {gender}
+          </p>
+          <p>
+            <strong>年齢:</strong> {age}歳
+          </p>
+          <p>
+            <strong>MBTI:</strong> {mbti}
+          </p>
         </div>
         {/* <div className="birthday">
           <p>{age}</p>

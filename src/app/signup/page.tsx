@@ -33,6 +33,7 @@ const SignUpPage: React.FC = () => {
       await createUser(formData);
       setSuccessMessage("ユーザー登録が成功しました！");
       setError(null);
+      localStorage.setItem('userId',"1");
     } catch (err) {
       console.log("Error creating user:", err);
       setError("ユーザー登録に失敗しました。");

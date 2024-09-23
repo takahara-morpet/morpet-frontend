@@ -8,6 +8,7 @@ import ReplyForm from "@/components/organisms/ReplyForm";
 import ReplyList, { ReplyData } from "@/components/template/ReplyList";
 import { ReplyCreateRequest } from "@/types/request/reply";
 import { createReply, fetchRepliesById } from "@/lib/api/reply";
+import local from "next/font/local";
 
 const PostPage = () => {
   const { id } = useParams();
@@ -55,9 +56,13 @@ const PostPage = () => {
     }
   };
   const handleAddReply = async (content: string) => {
+    const tmpUserId = localStorage.getItem("userId");
+    if (tmpUserId) {
+      console.log("現在のユーザーID:", tmpUserId);
+    }
     const newReplyRequest: ReplyCreateRequest = {
       postId: Number(id),
-      senderId: Number(1),
+      senderId: Number(tmpUserId),
       content: content,
     };
     try {

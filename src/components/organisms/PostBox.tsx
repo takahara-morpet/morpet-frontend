@@ -21,16 +21,17 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
       setError("投稿内容を入力してください。");
       return;
     }
-
+    
+    const userId=localStorage.getItem("userId");
     const postCreateRequest: PostCreateRequest = {
       // 一旦
-      userId: 1,
+      userId: Number(userId),
       category: "恋愛",
       content: text, // テキストを postData として設定
     };
     const postData: PostData = {
       id: 1,
-      username: "string",
+      username: userId+"usertest",
       content: text,
       likes: 0,
       replies: 0,

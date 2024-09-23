@@ -42,7 +42,7 @@ const Page: React.FC = () => {
   const handleTabClick = (tab: "recommend" | "follow" | "controversial") => {
     setActiveTab(tab);
   };
-  if (error) return <div>Error: {error.message}</div>;
+
   return (
     <div className="relative w-full h-full">
       {/* タブのヘッダー部分 */}
@@ -67,7 +67,6 @@ const Page: React.FC = () => {
         </button>
       </div>
 
-      {/* タブに応じてPostListやPostListBarを表示 */}
       <div className="post-list-container">
         {activeTab === "recommend" && <PostList posts={recommendPosts || []} />}
         {activeTab === "follow" && <PostList posts={followPosts} />}
@@ -76,6 +75,7 @@ const Page: React.FC = () => {
         )}{" "}
         {/* PostListBar に変更 */}
       </div>
+
       <div className="fixed -bottom-80 right-80 z-50">
         <SubmitButton onPostCreate={handleNewPost} />
       </div>
