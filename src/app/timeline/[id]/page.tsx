@@ -8,7 +8,7 @@ import ReplyForm from "@/components/organisms/ReplyForm";
 import ReplyList, { ReplyData } from "@/components/template/ReplyList";
 import { ReplyCreateRequest } from "@/types/request/reply";
 import { createReply, fetchRepliesById } from "@/lib/api/reply";
-import local from "next/font/local";
+
 
 const PostPage = () => {
   const { id } = useParams();

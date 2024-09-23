@@ -11,7 +11,7 @@ const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<
     "recommend" | "follow" | "controversial"
   >("recommend"); // 初期タブは「おすすめ」
-  const [error, setError] = useState<Error | null>(null);
+
   const [recommendPosts, setPosts] = useState<PostData[] | null>(null);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Page: React.FC = () => {
         })); // PostData型に変換
         setPosts(mappedPosts);
       } catch (err) {
-        setError(err as Error);
+        console.log(err);
       }
     };
     fetchData();
