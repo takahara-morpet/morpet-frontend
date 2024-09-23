@@ -11,4 +11,5 @@ export const USERS_DETAIL_URL = `${getEndpoint()}/users`
 // export const PROFILE_URL = `${getEndpoint()}/user/@me`
 // export const EVENTS_URL = `${getEndpoint()}/events`
 // export const EVENTS_DETAIL_URL = `${getEndpoint()}/event/`
-// export const SEARCH_FRIENDS_URL = `${getEndpoint()}/search/friends`
+// export const SEARCH_FRIENDS_URL = `${getEndpoint()}/search/friends
+//`

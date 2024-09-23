@@ -9,11 +9,9 @@ import { fetchUserDetail } from "@/lib/api/user";
 import { UserDetail } from "@/types/response/user";
 
 
-interface UserDetailProps {
-    user: UserDetail;
-}
 
-const ProfilePage: React.FC<UserDetailProps> = () => {
+
+const ProfilePage= () => {
   const [activeTab, setActiveTab] = useState<"self" | "like">("self"); // 初期タブは「おすすめ」
   const { id } = useParams();
   const [userData, setUserData] = useState<UserDetail | null>(null);

@@ -2,7 +2,7 @@ import React from 'react';
 import './PostBar.css';
 import GenderBar from '../modules/GenderBar'; // GenderBarコンポーネントをインポート
 
-interface PostBarProps {
+export interface PostBarProps {
   username: string;
   handle: string;
   time: string;
