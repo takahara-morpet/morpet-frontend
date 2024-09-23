@@ -3,6 +3,7 @@
 import axios from "axios";
 import { USERS_URL, USERS_DETAIL_URL } from "../../constants/routes";
 import { User, UserDetail } from "../../types/response/user";
+import { UserCreateRequest } from "@/types/request/user";
 
 export const fetchUsers = async (): Promise<User[]> => {
   try {
@@ -22,6 +23,18 @@ export const fetchUserDetail = async (id: string): Promise<UserDetail> => {
     console.log(response.data);
     return response.data;
   } catch (error) {
+    throw error;
+  }
+};
+
+export const createUser = async (userData: UserCreateRequest): Promise<UserCreateRequest> => {
+  try {
+    console.log("Sending POST request to:", USERS_URL);
+    const response = await axios.post(USERS_URL, userData);
+    console.log("Response data:", response.data);
+    return response.data;
+  } catch (error) {
+    console.log("Error creating user:", error);
     throw error;
   }
 };

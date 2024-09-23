@@ -8,10 +8,7 @@ import PostList from "@/components/template/PostList"; // PostListコンポー�
 import { fetchUserDetail } from "@/lib/api/user";
 import { UserDetail } from "@/types/response/user";
 
-
-
-
-const ProfilePage= () => {
+const ProfilePage = (): JSX.Element => {
   const [activeTab, setActiveTab] = useState<"self" | "like">("self"); // 初期タブは「おすすめ」
   const { id } = useParams();
   const [userData, setUserData] = useState<UserDetail | null>(null);
@@ -92,6 +89,7 @@ export default ProfilePage;
 // おすすめの投稿データ
 const selfPosts = [
   {
+    id: 1,
     username: "山田 太郎",
     handle: "taro_yamada",
     time: "1時間前",
@@ -102,6 +100,7 @@ const selfPosts = [
     profileImage: "https://example.com/profile1.jpg",
   },
   {
+    id: 2,
     username: "佐藤 花子",
     handle: "hanako_sato",
     time: "2時間前",
@@ -116,6 +115,7 @@ const selfPosts = [
 // フォロー中の投稿データ
 const likePosts = [
   {
+    id: 120,
     username: "フォロー中ユーザー1",
     handle: "follow_user1",
     time: "3時間前",
@@ -126,6 +126,7 @@ const likePosts = [
     profileImage: "https://example.com/profile3.jpg",
   },
   {
+    id: 478923,
     username: "フォロー中ユーザー2",
     handle: "follow_user2",
     time: "4時間前",
@@ -136,6 +137,7 @@ const likePosts = [
     profileImage: "https://example.com/profile4.jpg",
   },
   {
+    id: 46123,
     username: "田中 直子",
     handle: "naoko_tanaka",
     time: "8時間前",
@@ -146,6 +148,7 @@ const likePosts = [
     profileImage: "https://example.com/profile8.jpg",
   },
   {
+    id: 1632798,
     username: "本田 圭",
     handle: "kei_honda",
     time: "9時間前",
@@ -156,6 +159,7 @@ const likePosts = [
     profileImage: "https://example.com/profile9.jpg",
   },
   {
+    id: 8345,
     username: "井上 真",
     handle: "makoto_inoue",
     time: "10時間前",
