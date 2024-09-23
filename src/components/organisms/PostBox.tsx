@@ -41,9 +41,9 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
     try {
       await createPosts(postCreateRequest);
       console.log("投稿が成功しました");
-      onPostCreate(postData); // 新しい投稿を親コンポーネントに通知
-      setText(""); // 投稿後にテキストをクリア
-      setError(null); // エラーメッセージをクリア
+      onPostCreate(postData); 
+      setText("");
+      setError(null); 
     } catch (err) {
       console.error("投稿に失敗しました:", err);
       setError("投稿に失敗しました。");
@@ -54,12 +54,11 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
   return (
     <div className="post-box">
       <div className="post-header">
-        <img className="profile-image" src="profile.jpg" alt="Profile" />
-        <span className="header-text">いまどうしてる？</span>
+        <span className="header-text">恋愛記事を投稿しよう</span>
       </div>
       <textarea
         className="post-input"
-        placeholder="いまどうしてる？"
+        placeholder="内容を入力してください"
         value={text}
         onChange={handleTextChange}
       />

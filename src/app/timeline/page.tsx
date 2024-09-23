@@ -44,7 +44,7 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full h-full">
+    <div className="w-full h-full">
       {/* タブのヘッダー部分 */}
       <div className="tabs">
         <button
@@ -75,10 +75,7 @@ const Page: React.FC = () => {
         )}{" "}
         {/* PostListBar に変更 */}
       </div>
-
-      <div className="fixed -bottom-80 right-80 z-50">
         <SubmitButton onPostCreate={handleNewPost} />
-      </div>
     </div>
   );
 };

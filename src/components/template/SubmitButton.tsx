@@ -13,7 +13,7 @@ const SubmitButton: React.FC<PostBoxProps>  = ({onPostCreate}) => {
   };
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="fixed bottom-12 right-6 z-50">
       {/* フローティングボタン */}
       <div>
         <FloatingButton onClick={togglePostBox} />
@@ -21,8 +21,8 @@ const SubmitButton: React.FC<PostBoxProps>  = ({onPostCreate}) => {
 
       {/* PostBoxの表示（ボタンを押したら画面中央に表示） */}
       {showPostBox && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="relative z-10">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="relative">
             <PostBox onPostCreate={onPostCreate} />
           </div>
           <div className="absolute inset-0" onClick={togglePostBox} />
