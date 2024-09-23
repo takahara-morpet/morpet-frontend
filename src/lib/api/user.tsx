@@ -38,12 +38,3 @@ export const createUser = async (userData: UserCreateRequest): Promise<UserCreat
     throw error;
   }
 };
-
-// export const fetchMyAccount = async (): Promise<UserDetail> => {
-//   try {
-//     const response = await axios.get(PROFILE_URL);
-//     return response.data;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
