@@ -57,7 +57,7 @@ const PostPage = () => {
   const handleAddReply = async (content: string) => {
     const newReplyRequest: ReplyCreateRequest = {
       postId: Number(id),
-      senderId: Number(10),
+      senderId: Number(1),
       content: content,
     };
     try {

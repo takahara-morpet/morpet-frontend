@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Reply from "../organisms/Reply";
 
 export interface ReplyData {
