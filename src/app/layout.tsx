@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "../components/organisms/Footer"; // Footer コンポーネントのインポート
 
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
           <div className="relative">
             <Footer />
           </div>
+
         </div>
       </body>
     </html>

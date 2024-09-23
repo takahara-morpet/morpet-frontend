@@ -1,8 +1,15 @@
 import React from 'react';
-import PostBar from '../organisms/PostBar'; // PostBarコンポーネントをインポート
+import PostBar, { PostBarProps } from '../organisms/PostBar'; // PostBarコンポーネントをインポート
 import './PostListBar.css'; // CSSをインポート
 
-const PostListBar = ({ posts }) => {
+
+interface PostListBarProps {
+  posts:PostBarProps[];
+}
+  
+
+
+const PostListBar:React.FC<PostListBarProps> = ({ posts }) => {
   return (
     <div className="post-list-bar">
       {posts.map((post, index) => (
