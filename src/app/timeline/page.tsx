@@ -11,7 +11,7 @@ const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<
     "recommend" | "follow" | "controversial"
   >("recommend"); // 初期タブは「おすすめ」
-  const [error, setError] = useState<Error | null>(null);
+
   const [recommendPosts, setPosts] = useState<PostData[] | null>(null);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const Page: React.FC = () => {
         })); // PostData型に変換
         setPosts(mappedPosts);
       } catch (err) {
-        setError(err as Error);
+        console.log(err);
       }
     };
     fetchData();
@@ -42,7 +42,7 @@ const Page: React.FC = () => {
   const handleTabClick = (tab: "recommend" | "follow" | "controversial") => {
     setActiveTab(tab);
   };
-  if (error) return <div>Error: {error.message}</div>;
+
   return (
     <div className="w-full h-full">
       {/* タブのヘッダー部分 */}
@@ -67,7 +67,6 @@ const Page: React.FC = () => {
         </button>
       </div>
 
-      {/* タブに応じてPostListやPostListBarを表示 */}
       <div className="post-list-container">
         {activeTab === "recommend" && <PostList posts={recommendPosts || []} />}
         {activeTab === "follow" && <PostList posts={followPosts} />}
@@ -76,9 +75,7 @@ const Page: React.FC = () => {
         )}{" "}
         {/* PostListBar に変更 */}
       </div>
-
         <SubmitButton onPostCreate={handleNewPost} />
-
     </div>
   );
 };
