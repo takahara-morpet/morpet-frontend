@@ -1,7 +1,6 @@
 // PostList.tsx
 import React, { useState } from "react";
 import Post from "../organisms/Post"; // Postコンポーネントをインポート
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import LikeAnimation from "../modules/LikeAnimation";
 

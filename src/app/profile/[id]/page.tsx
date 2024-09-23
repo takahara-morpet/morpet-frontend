@@ -119,7 +119,7 @@ const selfPosts = [
 // フォロー中の投稿データ
 const likePosts = [
   {
-    id: 1189948290,
+    id: 120,
     username: "フォロー中ユーザー1",
     handle: "follow_user1",
     time: "3時間前",
@@ -163,7 +163,7 @@ const likePosts = [
     profileImage: "https://example.com/profile9.jpg",
   },
   {
-    id: 898234874538734583548345,
+    id: 8345,
     username: "井上 真",
     handle: "makoto_inoue",
     time: "10時間前",

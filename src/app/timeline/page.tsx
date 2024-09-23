@@ -18,7 +18,7 @@ const Page: React.FC = () => {
     const fetchData = async () => {
       try {
         const postlist = await fetchPosts();
-        const mappedPosts = postlist.map((post, index) => ({
+        const mappedPosts = postlist.map((post) => ({
           id: post.id,
           username: String(post.userId) + "test",
           handle: "handle",

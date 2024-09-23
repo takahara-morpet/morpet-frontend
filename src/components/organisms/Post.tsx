@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
-
 import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid"; // 必要なアイコンだけをインポート
 import "./Post.css";
