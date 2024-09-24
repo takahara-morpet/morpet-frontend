@@ -21,8 +21,9 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
       setError("投稿内容を入力してください。");
       return;
     }
-    
-    const userId=localStorage.getItem("userId");
+
+    const userId = localStorage.getItem("userId");
+    console.log("userId:" + String(userId));
     const postCreateRequest: PostCreateRequest = {
       // 一旦
       userId: Number(userId),
@@ -31,7 +32,7 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
     };
     const postData: PostData = {
       id: 1,
-      username: userId+"usertest",
+      username: userId + "usertest",
       content: text,
       likes: 0,
       replies: 0,
@@ -41,9 +42,9 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
     try {
       await createPosts(postCreateRequest);
       console.log("投稿が成功しました");
-      onPostCreate(postData); 
+      onPostCreate(postData);
       setText("");
-      setError(null); 
+      setError(null);
     } catch (err) {
       console.error("投稿に失敗しました:", err);
       setError("投稿に失敗しました。");

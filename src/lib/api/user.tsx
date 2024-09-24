@@ -11,7 +11,7 @@ export const fetchUsers = async (): Promise<User[]> => {
     const response = await axios.get(USERS_URL);
     return response.data;
   } catch (error) {
-    console.log("test")
+    console.log("test");
     throw error;
   }
 };
@@ -27,12 +27,16 @@ export const fetchUserDetail = async (id: string): Promise<UserDetail> => {
   }
 };
 
-export const createUser = async (userData: UserCreateRequest): Promise<UserCreateRequest> => {
+export const createUser = async (
+  userData: UserCreateRequest
+): Promise<number> => {
   try {
     console.log("Sending POST request to:", USERS_URL);
+    // サーバーが返すのは userID だけなので、それを期待する
     const response = await axios.post(USERS_URL, userData);
-    console.log("Response data:", response.data);
-    return response.data;
+    console.log("Created userID:", response.data);
+    console.log(response);
+    return response.data; // response.data は userID
   } catch (error) {
     console.log("Error creating user:", error);
     throw error;
