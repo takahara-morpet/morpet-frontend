@@ -9,7 +9,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     // ページが読み込まれたときにタイムラインページにリダイレクト
-    router.push('/timeline');
+    router.push('/signup');
   }, [router]);
 
   return null; // コンテンツがない場合は null を返します
