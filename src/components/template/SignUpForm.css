@@ -1,52 +1,87 @@
+/* SignUpForm.css */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffff; /* 全体の背景を淡い色に */
+  margin: 0;
+  padding: 0;
+}
+
 .signup-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-  }
-  
-  .signup-container h2 {
-    text-align: center;
-  }
-  
-  .signup-container form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .signup-container label {
-    margin-top: 10px;
-  }
-  
-  .signup-container input, .signup-container textarea, .signup-container select {
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .signup-container button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .signup-container button:hover {
-    background-color: #0056b3;
-  }
-  
-  .error-message {
-    color: red;
-    text-align: center;
-  }
-  
-  .success-message {
-    color: green;
-    text-align: center;
-  }
-  
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(135deg, #ffe6e6 0%, #ffcccc 100%);
+
+}
+
+.signup-container h2 {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.signup-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-container label {
+  margin-top: 15px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+}
+
+.signup-container input,
+.signup-container textarea,
+.signup-container select {
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #fff;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.05);
+  transition: border 0.3s ease;
+}
+
+.signup-container input:focus,
+.signup-container textarea:focus,
+.signup-container select:focus {
+  border: 1px solid #ff4d4d;
+  outline: none;
+}
+
+.signup-container button {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #ff4d4d;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-container button:hover {
+  background-color: #e64545;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: green;
+  text-align: center;
+  margin-top: 10px;
+}
