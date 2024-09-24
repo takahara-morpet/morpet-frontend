@@ -15,7 +15,9 @@ export const fetchReplies = async (): Promise<ReplyGetResponse[]> => {
 };
 
 // post_id に基づいて返信を取得する関数
-export const fetchRepliesById = async (postId: string): Promise<ReplyGetResponse[]> => {
+export const fetchRepliesById = async (
+  postId: string
+): Promise<ReplyGetResponse[]> => {
   try {
     const response = await axios.get(`${REPLIES_URL}/${postId}`);
     return response.data;
@@ -27,7 +29,7 @@ export const fetchRepliesById = async (postId: string): Promise<ReplyGetResponse
 
 export const createReply = async (
   replyData: ReplyCreateRequest
-): Promise<[]> => {
+): Promise<number> => {
   try {
     console.log("Sending POST request to:", REPLIES_URL);
     const response = await axios.post(REPLIES_URL, replyData);

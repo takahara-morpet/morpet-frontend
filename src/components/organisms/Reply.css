@@ -1,0 +1,92 @@
+.reply {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  border-bottom: 1px solid #e1e8ed;
+  background-color: #ffe6e6; /* 淡いピンクの背景 */
+  border-left: 3px solid #ff6666; /* 左側に強調する赤いライン */
+  border-radius: 8px;
+  margin: 10px 0;
+  position: relative;
+}
+
+/* .reply::before {
+  content: "❤️";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 24px;
+  color: #ff6666;
+  animation: pulse 1.5s infinite;
+} */
+/* ときめきのデザイン */
+.reply-tokimeki {
+  background-color: #ffe6f2;
+  border-left: 4px solid #ff66b2;
+}
+
+/* 面白い恋愛のデザイン */
+.reply-funny {
+  background-color: #fffbe6;
+  border-left: 4px solid #ffcc33;
+}
+
+/* イライラ恋愛のデザイン */
+.reply-angry {
+  background-color: #b186b2;
+  border-left: 4px solid rgb(103, 78, 92);
+}
+
+/* 片思いのデザイン */
+.reply-one-sided {
+  background-color: #e6f7ff;
+  border-left: 4px solid #66b3ff;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid #ff6666; /* 赤い縁 */
+}
+
+.reply-body {
+  flex: 1;
+}
+
+.reply-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.sender-name {
+  font-weight: bold;
+  font-size: 14px;
+  color: #ff3333; /* 強調された赤 */
+  margin-right: 5px;
+}
+
+.reply-time {
+  font-size: 12px;
+  color: #657786;
+}
+
+.reply-content {
+  font-size: 14px;
+  color: #14171a;
+  line-height: 1.5;
+}

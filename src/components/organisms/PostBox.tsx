@@ -10,10 +10,14 @@ export interface PostBoxProps {
 
 const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
   const [text, setText] = useState("");
+  const [category, setCategory] = useState("ときめき"); // 初期カテゴリを設定
   const [error, setError] = useState<string | null>(null); // エラーメッセージを保持
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
+  };
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(e.target.value);
   };
 
   const handleSubmit = async () => {
@@ -27,7 +31,7 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
     const postCreateRequest: PostCreateRequest = {
       // 一旦
       userId: Number(userId),
-      category: "恋愛",
+      category: category,
       content: text, // テキストを postData として設定
     };
     const postData: PostData = {
@@ -37,6 +41,7 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
       likes: 0,
       replies: 0,
       profileImage: "",
+      category: category,
     };
 
     try {
@@ -57,6 +62,16 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
       <div className="post-header">
         <span className="header-text">恋愛記事を投稿しよう</span>
       </div>
+      <select
+        className="category-select"
+        value={category}
+        onChange={handleCategoryChange}
+      >
+        <option value="ときめき">ときめき</option>
+        <option value="面白い恋愛">面白い恋愛</option>
+        <option value="イライラ恋愛">イライラ恋愛</option>
+        <option value="片思い">片思い</option>
+      </select>
       <textarea
         className="post-input"
         placeholder="内容を入力してください"
