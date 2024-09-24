@@ -1,6 +1,6 @@
-import React from 'react';
-import './PostBar.css';
-import GenderBar from '../modules/GenderBar'; // GenderBarコンポーネントをインポート
+import React from "react";
+import "./PostBar.css";
+import GenderBar from "../modules/GenderBar"; // GenderBarコンポーネントをインポート
 
 export interface PostBarProps {
   username: string;
@@ -8,8 +8,6 @@ export interface PostBarProps {
   time: string;
   content: string;
   profileImage: string;
-  malePercentage: number;
-  femalePercentage: number;
 }
 
 const PostBar: React.FC<PostBarProps> = ({
@@ -18,8 +16,6 @@ const PostBar: React.FC<PostBarProps> = ({
   time,
   content,
   profileImage,
-  malePercentage,
-  femalePercentage,
 }) => {
   return (
     <div className="post-bar">
@@ -33,7 +29,7 @@ const PostBar: React.FC<PostBarProps> = ({
         <div className="post-content">{content}</div>
 
         {/* GenderBar をここに追加 */}
-        <GenderBar malePercentage={malePercentage} femalePercentage={femalePercentage} />
+        <GenderBar />
       </div>
     </div>
   );
