@@ -9,7 +9,7 @@ const SignUpPage: React.FC = () => {
     age: 0,
     name: "",
     profile: "",
-    profileImageUrl: '/images/suga.jpg',
+    profileImageUrl: "/images/suga.jpg",
     gender: "",
     mbti: "",
   });
@@ -30,10 +30,10 @@ const SignUpPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await createUser(formData);
+      const userId = await createUser(formData);
       setSuccessMessage("ユーザー登録が成功しました！");
       setError(null);
-      localStorage.setItem('userId',"1");
+      localStorage.setItem("userId", String(userId));
     } catch (err) {
       console.log("Error creating user:", err);
       setError("ユーザー登録に失敗しました。");
