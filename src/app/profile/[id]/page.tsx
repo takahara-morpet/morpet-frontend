@@ -98,6 +98,7 @@ const selfPosts = [
     retweets: 5,
     replies: 10,
     profileImage: "https://example.com/profile1.jpg",
+    category: "恋愛",
   },
   {
     id: 2,
@@ -109,6 +110,7 @@ const selfPosts = [
     retweets: 10,
     replies: 5,
     profileImage: "https://example.com/profile2.jpg",
+    category: "恋愛",
   },
 ];
 
@@ -124,6 +126,7 @@ const likePosts = [
     retweets: 4,
     replies: 6,
     profileImage: "https://example.com/profile3.jpg",
+    category: "恋愛",
   },
   {
     id: 478923,
@@ -135,6 +138,7 @@ const likePosts = [
     retweets: 7,
     replies: 8,
     profileImage: "https://example.com/profile4.jpg",
+    category: "恋愛",
   },
   {
     id: 46123,
@@ -146,6 +150,7 @@ const likePosts = [
     retweets: 9,
     replies: 13,
     profileImage: "https://example.com/profile8.jpg",
+    category: "恋愛",
   },
   {
     id: 1632798,
@@ -157,6 +162,7 @@ const likePosts = [
     retweets: 15,
     replies: 25,
     profileImage: "https://example.com/profile9.jpg",
+    category: "恋愛",
   },
   {
     id: 8345,
@@ -168,5 +174,6 @@ const likePosts = [
     retweets: 10,
     replies: 17,
     profileImage: "https://example.com/profile10.jpg",
+    category: "恋愛",
   },
 ];
