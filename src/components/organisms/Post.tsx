@@ -14,6 +14,7 @@ interface PostProps {
   replies: number;
   profileImage: string;
   link: string;
+  category: string; // カテゴリーを追加
   onLike: () => void; // いいね時のコールバックを受け取る
 }
 
@@ -26,6 +27,7 @@ const Post: React.FC<PostProps> = ({
   replies,
   profileImage,
   link,
+  category, // カテゴリーを受け取る
   onLike,
 }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -55,6 +57,10 @@ const Post: React.FC<PostProps> = ({
                 <span className="time">・{time}</span>
               </div>
               <div className="post-content">{content}</div>
+              <div className="post-category">
+                {/* カテゴリーの表示を追加 */}
+                <span className="category">{category}</span>
+              </div>
             </div>
           </div>
         </Link>

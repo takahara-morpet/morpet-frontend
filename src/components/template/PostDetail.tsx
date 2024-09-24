@@ -43,20 +43,28 @@ const PostDetail: React.FC<PostDetailProps> = ({ post }) => {
       animate="visible"
       exit="exit"
     >
-      <h1>{post.content}</h1>
-      <p>
-        Posted by: {post.username} ({post.handle})
-      </p>
-      <p>Time: {post.time}</p>
-      <p>Likes: {post.likes}</p>
-      <p>Replies: {post.replies}</p>
-      <motion.img
-        src={post.profileImage}
-        alt={post.username}
-        initial={{ z: -200, opacity: 0 }}
-        animate={{ z: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-      />
+      <div className="post-header">
+        <motion.img
+          src={post.profileImage}
+          alt={post.username}
+          className="profile-image"
+          initial={{ z: -200, opacity: 0 }}
+          animate={{ z: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+        />
+        <div className="post-header-details">
+          <div className="post-header-info">
+            <h1>{post.username}</h1>
+            <span className="handle">@{post.handle}</span>
+            <span className="time">{post.time}</span>
+          </div>
+          <p className="post-content">{post.content}</p>
+        </div>
+      </div>
+      <div className="post-stats">
+        <span>Likes: {post.likes}</span>
+        <span>Replies: {post.replies}</span>
+      </div>
     </motion.div>
   );
 };

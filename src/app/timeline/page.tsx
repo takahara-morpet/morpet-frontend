@@ -27,6 +27,7 @@ const Page: React.FC = () => {
           likes: 0,
           replies: 0,
           profileImage: "/images/suga.jpg",
+          category: post.category,
         })); // PostData型に変換
         setPosts(mappedPosts);
       } catch (err) {
@@ -75,7 +76,7 @@ const Page: React.FC = () => {
         )}{" "}
         {/* PostListBar に変更 */}
       </div>
-        <SubmitButton onPostCreate={handleNewPost} />
+      <SubmitButton onPostCreate={handleNewPost} />
     </div>
   );
 };
@@ -118,6 +119,7 @@ const followPosts = [
     retweets: 4,
     replies: 6,
     profileImage: "https://example.com/profile3.jpg",
+    category: "恋愛",
   },
   {
     id: 85743,
@@ -129,6 +131,7 @@ const followPosts = [
     retweets: 7,
     replies: 8,
     profileImage: "https://example.com/profile4.jpg",
+    category: "恋愛",
   },
 ];
 
@@ -157,6 +160,7 @@ const controversialPosts = [
     profileImage: "https://example.com/profile6.jpg",
     malePercentage: 55,
     femalePercentage: 45,
+    category: "恋愛",
   },
   {
     username: "中村 勇",
@@ -169,5 +173,6 @@ const controversialPosts = [
     profileImage: "https://example.com/profile7.jpg",
     malePercentage: 50,
     femalePercentage: 50,
+    category: "恋愛",
   },
 ];
