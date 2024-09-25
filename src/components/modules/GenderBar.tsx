@@ -122,7 +122,17 @@ const GenderBar: React.FC = () => {
       </AnimatePresence>
       <div className="gender-row">
         {/* 男性アイコン */}
-        <UserIcon className="gender-icon male" onClick={handleMaleClick} />
+        <motion.div
+          className="gender-icon male tooltip"
+          data-tooltip="男性側に投票"
+          onClick={handleMaleClick}
+          tabIndex={0} 
+
+          role="button"
+          aria-label="男性側に投票"
+        >
+          <UserIcon />
+        </motion.div>
 
         {/* 男女の割合を表すバー */}
         <div className="gender-bar">
@@ -145,7 +155,16 @@ const GenderBar: React.FC = () => {
         </div>
 
         {/* 女性アイコン */}
-        <UserIcon className="gender-icon female" onClick={handleFemaleClick} />
+        <motion.div
+          className="gender-icon female tooltip"
+          data-tooltip="女性側に投票"
+          onClick={handleFemaleClick}
+          tabIndex={0} // フォーカス可能にする
+          role="button"
+          aria-label="女性側に投票"
+        >
+          <UserIcon />
+        </motion.div>
       </div>
     </div>
   );
