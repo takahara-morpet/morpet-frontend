@@ -26,28 +26,28 @@ const Footer: React.FC = () => {
     <footer className="footer">
       <ul className="navLinks">
         <li>
-          <Link href="/timeline">
+          <Link href="/timeline" className="tooltip" data-tooltip="ホーム">
             <HomeIcon className="icon" />
           </Link>
         </li>
         <li>
-          <Link href="/profile">
+          <Link href="/profile" className="tooltip" data-tooltip="プロフィール一覧">
             <UsersIcon className="icon" />
           </Link>
         </li>
         <li>
-          <Link href="/notifications">
+          <Link href="/notifications" className="tooltip" data-tooltip="通知">
             <BellIcon className="icon" />
           </Link>
         </li>
         <li>
-          <Link href="/message">
+          <Link href="/message" className="tooltip" data-tooltip="メッセージ">
             <EnvelopeIcon className="icon" />
           </Link>
         </li>
         {userId && (
           <li>
-            <Link href={`/profile/${userId}`}>
+            <Link href={`/profile/${userId}`} className="tooltip" data-tooltip="マイプロフィール">
               <UserIcon className="icon" />
             </Link>
           </li>

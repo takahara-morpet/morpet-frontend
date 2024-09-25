@@ -72,7 +72,10 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate, onCloseModal }) => {
     <form className="post-box" onSubmit={handleFormSubmit}>
       <div className="post-header">
         <span className="header-text">恋愛記事を投稿しよう</span>
-        <button className="close-button" type="button" onClick={onCloseModal}>
+        <button 
+          className="close-button tooltip"
+          data-tooltip="閉じる"
+          type="button" onClick={onCloseModal}>
           &times;
         </button>
       </div>
