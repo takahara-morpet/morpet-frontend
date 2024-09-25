@@ -66,20 +66,12 @@ const Page: React.FC = () => {
         >
           フォロー中
         </button>
-        <button
-          className={`tab-button ${activeTab === "controversial" ? "active" : ""}`}
-          onClick={() => handleTabClick("controversial")}
-        >
-          賛否両論
-        </button>
       </div>
 
       <div className="post-list-container">
         {activeTab === "recommend" && <PostList posts={recommendPosts || []} />}
         {activeTab === "follow" && <PostList posts={followPosts} />}
-        {activeTab === "controversial" && (
-          <PostListBar posts={controversialPosts} />
-        )}{" "}
+        {" "}
         {/* PostListBar に変更 */}
       </div>
       <SubmitButton onPostCreate={handleNewPost} />
@@ -141,44 +133,3 @@ const followPosts = [
   },
 ];
 
-// 賛否両論の投稿データ
-const controversialPosts = [
-  {
-    username: "木村 拓",
-    handle: "taku_kimura",
-    time: "5時間前",
-    content: "最近のトレンドには賛否があるけど、僕は肯定派。",
-    likes: 50,
-    retweets: 20,
-    replies: 30,
-    profileImageUrl: "/images/crab.jpg",
-    malePercentage: 60,
-    femalePercentage: 40,
-  },
-  {
-    username: "田中 美沙",
-    handle: "misa_tanaka",
-    time: "6時間前",
-    content: "その意見には反対だけど、意見交換は大事だね。",
-    likes: 35,
-    retweets: 10,
-    replies: 22,
-    profileImageUrl: "/images/bird.jpg",
-    malePercentage: 55,
-    femalePercentage: 45,
-    category: "恋愛",
-  },
-  {
-    username: "中村 勇",
-    handle: "isamu_nakamura",
-    time: "7時間前",
-    content: "議論の余地がある問題だけど、自分の立場を明確にしたい。",
-    likes: 45,
-    retweets: 12,
-    replies: 19,
-    profileImageUrl: "/images/kurage.jpg",
-    malePercentage: 50,
-    femalePercentage: 50,
-    category: "恋愛",
-  },
-];
