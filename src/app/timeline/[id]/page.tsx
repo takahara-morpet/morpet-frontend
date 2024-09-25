@@ -18,10 +18,15 @@ const PostPage = () => {
   const [newReplyId, setNewReplyId] = useState<number | null>(null); // 新しいリプライをトラッキング
   const [isNewReplyVisible, setIsNewReplyVisible] = useState(true); // 新規リプライの可視フラグ
 
+  // ページ初期読み込み時にデータを取得
   useEffect(() => {
-    fetchPostData();
-    fetchRepliesByPostId();
-  }, [id]);
+    const fetchInitialData = async () => {
+      await fetchPostData(); // 投稿データを取得
+      await fetchRepliesByPostId(); // リプライデータを取得
+    };
+
+    fetchInitialData(); // コンポーネントの初期化時に実行
+  }, [id]); // id が変更された時にも実行
 
   const fetchPostData = async () => {
     try {
@@ -47,7 +52,6 @@ const PostPage = () => {
 
   const fetchRepliesByPostId = async () => {
     try {
-      if (post === null) return;
       const replyGetResponse = await fetchRepliesById(String(id));
       const replyList = replyGetResponse.map((reply) => ({
         id: reply.id,
@@ -55,7 +59,7 @@ const PostPage = () => {
         time: reply.sentAt,
         content: reply.content,
         profileImage: "/images/suga.jpg",
-        category: post.category,
+        category: post?.category || "default", // postがない場合でもカテゴリを設定
       }));
       setReplies(replyList);
     } catch (err) {
@@ -78,14 +82,7 @@ const PostPage = () => {
       const newReplyId = await createReply(newReplyRequest);
       setNewReplyId(newReplyId); // 新しく投稿されたリプライのIDを設定
       setIsNewReplyVisible(true); // 新規リプライのアニメーションを開始
-      // const newReply: ReplyData = {
-      //   id: newReplyId,
-      //   senderName: String(tmpUserId) + "user",
-      //   time: reply.sentAt,
-      //   content: reply.content,
-      //   profileImage: "/images/suga.jpg",
-      // };
-      await fetchRepliesByPostId();
+      await fetchRepliesByPostId(); // 新しいリプライが反映されるよう再度リプライデータを取得
     } catch (err) {
       setError(err as Error);
     }
