@@ -18,7 +18,6 @@ export const createPosts = async (postData: PostCreateRequest): Promise<[]> => {
   try {
     console.log("Sending POST request to:", POSTS_URL);
     const response = await axios.post(POSTS_URL, postData);
-    // window.location.reload();
     console.log("Response data:", response.data);
     return response.data;
   } catch (error) {
