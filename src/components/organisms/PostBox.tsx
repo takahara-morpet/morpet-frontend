@@ -55,6 +55,7 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate, onCloseModal }) => {
         const postData: PostData = {
           id: 1,
           username: user.name,
+          handle: user.name+user.id,
           content: text,
           likes: 0,
           replies: 0,

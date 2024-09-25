@@ -56,7 +56,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ post }) => {
         <div className="post-header-details">
           <div className="post-header-info">
             <h1>{post.username}</h1>
-            <span className="handle">@{post.id}</span>
+            <span className="handle">@{post.handle}</span>
             <span className="time">{post.time}</span>
           </div>
           <p className="post-content">{post.content}</p>
