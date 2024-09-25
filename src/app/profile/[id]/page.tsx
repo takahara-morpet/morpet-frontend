@@ -70,7 +70,7 @@ const selfPosts = [
     likes: 20,
     retweets: 5,
     replies: 10,
-    profileImage: "/images/kurage.jpg",
+    profileImageUrl: "/images/kurage.jpg",
     category: "恋愛",
   }
 ];
@@ -86,7 +86,7 @@ const likePosts = [
     likes: 15,
     retweets: 4,
     replies: 6,
-    profileImage: "/images/star.jpg",
+    profileImageUrl: "/images/star.jpg",
     category: "恋愛",
   },
   {
@@ -98,7 +98,7 @@ const likePosts = [
     likes: 25,
     retweets: 7,
     replies: 8,
-    profileImage: "/images/penguin.jpg",
+    profileImageUrl: "/images/penguin.jpg",
     category: "恋愛",
   },
   {
@@ -110,7 +110,7 @@ const likePosts = [
     likes: 40,
     retweets: 9,
     replies: 13,
-    profileImage: "/images/azarashi.jpg",
+    profileImageUrl: "/images/azarashi.jpg",
     category: "恋愛",
   },
   {
@@ -122,7 +122,7 @@ const likePosts = [
     likes: 60,
     retweets: 15,
     replies: 25,
-    profileImage: "/images/suga.jpg",
+    profileImageUrl: "/images/suga.jpg",
     category: "恋愛",
   },
   {
@@ -134,7 +134,7 @@ const likePosts = [
     likes: 45,
     retweets: 10,
     replies: 17,
-    profileImage: "/images/elephant.jpg",
+    profileImageUrl: "/images/elephant.jpg",
     category: "恋愛",
   },
 ];

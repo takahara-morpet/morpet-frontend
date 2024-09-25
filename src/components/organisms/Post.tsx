@@ -13,7 +13,7 @@ interface PostProps {
   content: string;
   likes: number;
   replies: number;
-  profileImage: string;
+  profileImageUrl: string;
   link: string;
   category: string; // カテゴリーを追加
   onLike: () => void; // いいね時のコールバックを受け取る
@@ -26,7 +26,7 @@ const Post: React.FC<PostProps> = ({
   content,
   likes,
   replies,
-  profileImage,
+  profileImageUrl,
   link,
   category,
   onLike,
@@ -55,7 +55,7 @@ const Post: React.FC<PostProps> = ({
     <div className="post anim-box kiran">
       <div className="post-content-wrapper">
           <div className="post-link-content">
-            <Image src={profileImage} alt="Profile" className="profile-img" width={40} height={40} />
+            <Image src={profileImageUrl} alt="Profile" className="profile-img" width={40} height={40} />
             <div className="post-body">
               <div className="post-header">
                 <span className="username">{username}</span>

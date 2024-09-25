@@ -30,7 +30,7 @@ const Page: React.FC = () => {
               content: post.content,
               likes: 0,
               replies: 0,
-              profileImage: userDetails.profileImageUrl,
+              profileImageUrl: userDetails.profileImageUrl,
               category: post.category,
             };
           })
@@ -124,7 +124,7 @@ const followPosts = [
     likes: 15,
     retweets: 4,
     replies: 6,
-    profileImage: "/images/elephant.jpg",
+    profileImageUrl: "/images/elephant.jpg",
     category: "恋愛",
   },
   {
@@ -136,7 +136,7 @@ const followPosts = [
     likes: 25,
     retweets: 7,
     replies: 8,
-    profileImage: "/images/star.jpg",
+    profileImageUrl: "/images/star.jpg",
     category: "恋愛",
   },
 ];
@@ -151,7 +151,7 @@ const controversialPosts = [
     likes: 50,
     retweets: 20,
     replies: 30,
-    profileImage: "/images/crab.jpg",
+    profileImageUrl: "/images/crab.jpg",
     malePercentage: 60,
     femalePercentage: 40,
   },
@@ -163,7 +163,7 @@ const controversialPosts = [
     likes: 35,
     retweets: 10,
     replies: 22,
-    profileImage: "/images/bird.jpg",
+    profileImageUrl: "/images/bird.jpg",
     malePercentage: 55,
     femalePercentage: 45,
     category: "恋愛",
@@ -176,7 +176,7 @@ const controversialPosts = [
     likes: 45,
     retweets: 12,
     replies: 19,
-    profileImage: "/images/kurage.jpg",
+    profileImageUrl: "/images/kurage.jpg",
     malePercentage: 50,
     femalePercentage: 50,
     category: "恋愛",

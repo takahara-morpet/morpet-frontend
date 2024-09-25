@@ -12,7 +12,7 @@ export interface PostData {
   content: string;
   likes?: number;
   replies?: number;
-  profileImage?: string;
+  profileImageUrl?: string;
   category: string;
 }
 
@@ -49,7 +49,7 @@ const PostList: React.FC<PostListProps> = ({ posts }) => {
               content={post.content}
               likes={post.likes ?? 0}
               replies={post.replies ?? 0}
-              profileImage={post.profileImage ?? ""}
+              profileImageUrl={post.profileImageUrl ?? ""}
               link={`/timeline/${post.id}`}
               onLike={handleLike}
               category={post.category}
