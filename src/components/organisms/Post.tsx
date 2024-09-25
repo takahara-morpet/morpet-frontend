@@ -8,6 +8,7 @@ import GenderBar from "../modules/GenderBar";
 import { fetchPostById, updatePostPercentage } from "@/lib/api/post";
 import { PostPercentageUpdateResponse } from "@/types/response/post";
 import Image from "next/image";
+import "../../app/globals.css"
 
 interface PostProps {
   id: number;
@@ -116,7 +117,7 @@ const Post: React.FC<PostProps> = ({
               <div className="post-header">
                 <span className="username">{username}</span>
                 <span className="handle">@{handle}</span>
-                {/* <span className="time">・{time}</span> */}
+                <span className="time invisible">・{time}</span>
               </div>
               <div className="post-content">{content}</div>
               <div className="post-category">
