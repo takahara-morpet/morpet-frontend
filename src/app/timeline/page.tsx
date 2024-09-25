@@ -67,7 +67,7 @@ const Page: React.FC = () => {
           フォロー中
         </button>
         <button
-          className={`invisible ${activeTab === "controversial" ? "active" : ""}`}
+          className={`invisible tab-button ${activeTab === "controversial" ? "active" : ""}`}
           onClick={() => handleTabClick("controversial")}
         >
           賛否両論
