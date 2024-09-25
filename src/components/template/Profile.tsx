@@ -35,7 +35,7 @@ const ProfileCard: React.FC<ProfileProps> = ({
         />
         <div className="name-username">
           <h2 className="name">{name}</h2>
-          <p className="username">@{id}</p>
+          <p className="username">@{name+id}</p>
         </div>
       </div>
       <p className="bio">{profile}</p>

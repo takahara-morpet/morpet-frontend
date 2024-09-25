@@ -141,3 +141,29 @@ body {
 .invisible{
   display: none;
 }
+
+.notification-list {
+  list-style: none;
+  padding: 0;
+}
+
+.notification-item {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.notification-item strong {
+  color: #007bff;
+}
+
+.timestamp {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.875rem;
+  color: #888;
+}

@@ -27,7 +27,7 @@ const UserIcon: React.FC<UserIconProps> = ({ profileImageUrl, name, id }) => {
         />
         <div className="icon-text">
           <h2 className="icon-name">{name}</h2>
-          <p className="icon-id">@{id}</p>
+          <p className="icon-id">@{name+id}</p>
         </div>
       </div>
     </div>
