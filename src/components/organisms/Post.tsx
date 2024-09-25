@@ -4,6 +4,7 @@ import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid"; // 必要なアイコンだけをインポート
 import "./Post.css";
 import Link from "next/link";
+import Image from "next/image";
 
 interface PostProps {
   username: string;
@@ -49,7 +50,7 @@ const Post: React.FC<PostProps> = ({
       <div className="post-content-wrapper">
         <Link href={link}>
           <div className="post-link-content">
-            <img src={profileImage} alt="Profile" className="profile-img" />
+            <Image src={profileImage} alt="Profile" className="profile-img" width={40} height={40} />
             <div className="post-body">
               <div className="post-header">
                 <span className="username">{username}</span>
