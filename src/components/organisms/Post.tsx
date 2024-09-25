@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { useRouter } from "next/navigation"; // useRouter をインポート
 import { ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid"; // 必要なアイコンだけをインポート
 import "./Post.css";
-import Link from "next/link";
 
 interface PostProps {
   username: string;
@@ -27,11 +27,12 @@ const Post: React.FC<PostProps> = ({
   replies,
   profileImage,
   link,
-  category, // カテゴリーを受け取る
+  category,
   onLike,
 }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
+  const router = useRouter(); // useRouter フックを使ってルーターにアクセス
 
   const handleLikeClicked = () => {
     if (isLiked) {
@@ -44,30 +45,33 @@ const Post: React.FC<PostProps> = ({
     }
   };
 
+  // 返信ボタンクリック時にページ遷移
+  const handleReplyClick = () => {
+    router.push(link); // 指定されたリンクに遷移
+  };
+
   return (
     <div className="post anim-box kiran">
       <div className="post-content-wrapper">
-        <Link href={link}>
-          <div className="post-link-content">
-            <img src={profileImage} alt="Profile" className="profile-img" />
-            <div className="post-body">
-              <div className="post-header">
-                <span className="username">{username}</span>
-                <span className="handle">@{handle}</span>
-                <span className="time">・{time}</span>
-              </div>
-              <div className="post-content">{content}</div>
-              <div className="post-category">
-                {/* カテゴリーの表示を追加 */}
-                <span className="category">{category}</span>
-              </div>
+        <div className="post-link-content">
+          <img src={profileImage} alt="Profile" className="profile-img" />
+          <div className="post-body">
+            <div className="post-header">
+              <span className="username">{username}</span>
+              <span className="handle">@{handle}</span>
+              <span className="time">・{time}</span>
+            </div>
+            <div className="post-content">{content}</div>
+            <div className="post-category">
+              {/* カテゴリーの表示を追加 */}
+              <span className="category">{category}</span>
             </div>
           </div>
-        </Link>
+        </div>
 
         <div className="post-actions">
           {/* 返信ボタン */}
-          <div className="post-action">
+          <div className="post-action" onClick={handleReplyClick}>
             <ChatBubbleLeftIcon className="icon" />
             <span>{replies}</span>
           </div>
