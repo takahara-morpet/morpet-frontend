@@ -2,6 +2,7 @@ export type User = {
   id: number;
   name: string;
   profileImageUrl: string;
+  lastMessage?: string;
 };
 
 export type UserDetail = {
