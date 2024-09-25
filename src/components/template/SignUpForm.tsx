@@ -73,7 +73,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
             <select
               name="profileImageUrl"
               id="profileImageUrl"
-              value={formData.profileImageUrl}
+              value={formData.profileImageUrl || "/images/azarashi.jpg"}
               onChange={handleChange}
               required
             >
