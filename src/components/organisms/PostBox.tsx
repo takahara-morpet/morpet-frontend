@@ -1,4 +1,3 @@
-// PostBox.tsx
 "use client"; // クライアントコンポーネントとして指定
 
 import React, { useState } from "react";
@@ -30,7 +29,7 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate, onCloseModal }) => {
 
   const handleSubmit = async () => {
     if (text.trim() === "") {
-      setError("つぶやきを記入してください。");
+      setError("投稿を記入してください。");
       return;
     }
 

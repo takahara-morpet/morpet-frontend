@@ -1,4 +1,3 @@
-// SubmitButton.tsx
 import React, { useState } from 'react';
 import FloatingButton from '../modules/FloatingButton';
 import PostBox from '../organisms/PostBox';
