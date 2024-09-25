@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/navigation"; // useRouter をインポート
 import { ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid"; // 必要なアイコンだけをインポート
@@ -28,11 +29,12 @@ const Post: React.FC<PostProps> = ({
   replies,
   profileImage,
   link,
-  category, // カテゴリーを受け取る
+  category,
   onLike,
 }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
+  const router = useRouter(); // useRouter フックを使ってルーターにアクセス
 
   const handleLikeClicked = () => {
     if (isLiked) {
@@ -43,6 +45,11 @@ const Post: React.FC<PostProps> = ({
       setLikesCount(likesCount + 1);
       onLike();
     }
+  };
+
+  // 返信ボタンクリック時にページ遷移
+  const handleReplyClick = () => {
+    router.push(link); // 指定されたリンクに遷移
   };
 
   return (
@@ -64,11 +71,11 @@ const Post: React.FC<PostProps> = ({
               </div>
             </div>
           </div>
-        </Link>
+        </div>
 
         <div className="post-actions">
           {/* 返信ボタン */}
-          <div className="post-action">
+          <div className="post-action" onClick={handleReplyClick}>
             <ChatBubbleLeftIcon className="icon" />
             <span>{replies}</span>
           </div>
