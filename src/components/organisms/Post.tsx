@@ -4,7 +4,6 @@ import { ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid"; // 必要なアイコンだけをインポート
 import "./Post.css";
-import Link from "next/link";
 import Image from "next/image";
 
 interface PostProps {
