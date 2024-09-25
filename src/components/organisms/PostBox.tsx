@@ -1,3 +1,5 @@
+"use client"; // クライアントコンポーネントとして指定
+
 import React, { useState } from "react";
 import "./PostBox.css";
 import { createPosts } from "@/lib/api/post";
@@ -8,9 +10,10 @@ import { UserDetail } from "@/types/response/user";
 
 export interface PostBoxProps {
   onPostCreate: (newPost: PostData) => void; // 投稿完了時に呼び出されるコールバック関数
+  onCloseModal: () => void; // モーダルを閉じるためのコールバック関数
 }
 
-const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
+const PostBox: React.FC<PostBoxProps> = ({ onPostCreate, onCloseModal }) => {
   const [text, setText] = useState("");
   const [category, setCategory] = useState("ときめき"); // 初期カテゴリを設定
   // const [userData, setUserData] = useState<UserDetail | null>(null); // ユーザー情報を保持
@@ -18,6 +21,9 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
+    if (error) {
+      setError(null); // ユーザーが入力を開始したらエラーをクリア
+    }
   };
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -26,7 +32,7 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
   
   const handleSubmit = async () => {
     if (text.trim() === "") {
-      setError("投稿内容を入力してください。");
+      setError("投稿を記入してください。");
       return;
     }
   
@@ -64,6 +70,7 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
           onPostCreate(postData);
           setText("");
           setError(null);
+          onCloseModal(); // 投稿成功後にモーダルを閉じる
         } catch (err) {
           console.error("投稿に失敗しました:", err);
           setError("投稿に失敗しました。");
@@ -75,12 +82,22 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
     };
     await fetchData();
   };
-  if (error) return <div>Error: {error}</div>;
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    handleSubmit();
+  };
 
   return (
-    <div className="post-box">
+    <form className="post-box" onSubmit={handleFormSubmit}>
       <div className="post-header">
         <span className="header-text">恋愛記事を投稿しよう</span>
+        <button 
+          className="close-button tooltip"
+          data-tooltip="閉じる"
+          type="button" onClick={onCloseModal}>
+          &times;
+        </button>
       </div>
       <select
         className="category-select"
@@ -93,17 +110,18 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
         <option value="片思い">片思い</option>
       </select>
       <textarea
-        className="post-input"
-        placeholder="内容を入力してください"
+        className={`post-input ${error ? "input-error" : ""}`}
+        placeholder={error ? error : "内容を入力してください"}
         value={text}
         onChange={handleTextChange}
       />
+      {error && <div className="error-message">{error}</div>}
       <div className="post-actions">
-        <button className="post-button" onClick={handleSubmit}>
+        <button type="submit" className="post-button">
           投稿する
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 
