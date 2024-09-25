@@ -6,6 +6,7 @@ import PostList, { PostData } from "@/components/template/PostList"; // PostList
 import PostListBar from "@/components/template/PostListBar"; // PostListBarコンポーネントをインポート
 import SubmitButton from "@/components/template/SubmitButton"; // SubmitButtonのインポート
 import { fetchPosts } from "@/lib/api/post";
+import { fetchUserDetail } from "@/lib/api/user";
 
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<
@@ -18,17 +19,22 @@ const Page: React.FC = () => {
     const fetchData = async () => {
       try {
         const postlist = await fetchPosts();
-        const mappedPosts = postlist.map((post) => ({
-          id: post.id,
-          username: String(post.userId) + "test",
-          handle: "handle",
-          time: "time",
-          content: post.content,
-          likes: 0,
-          replies: 0,
-          profileImage: "/images/suga.jpg",
-          category: post.category,
-        })); // PostData型に変換
+        const mappedPosts = await Promise.all(
+          postlist.map(async (post) => {
+            const userDetails = await fetchUserDetail(String(post.userId));
+            return {
+              id: post.id,
+              username: userDetails.name,
+              handle: String(post.userId),
+              time: "time",
+              content: post.content,
+              likes: 0,
+              replies: 0,
+              profileImageUrl: userDetails.profileImageUrl,
+              category: post.category,
+            };
+          })
+        ); // PostData型に変換
         setPosts(mappedPosts);
       } catch (err) {
         console.log(err);
@@ -37,7 +43,7 @@ const Page: React.FC = () => {
     fetchData();
   }, []);
   const handleNewPost = (newPost: PostData) => {
-    setPosts([newPost, ...(recommendPosts || [])]); // 新しい投稿を先頭に追加
+    setPosts([...(recommendPosts || []), newPost]); // 新しい投稿を先頭に追加
   };
 
   const handleTabClick = (tab: "recommend" | "follow" | "controversial") => {
@@ -93,7 +99,7 @@ export default Page;
 //     likes: 20,
 //     retweets: 5,
 //     replies: 10,
-//     profileImage: 'https://example.com/profile1.jpg',
+//     profileImage: '/images/penguin.jpg',
 //   },
 //   {
 //     username: '佐藤 花子',
@@ -103,7 +109,7 @@ export default Page;
 //     likes: 30,
 //     retweets: 10,
 //     replies: 5,
-//     profileImage: 'https://example.com/profile2.jpg',
+//     profileImage: '/images/lion.jpg',
 //   },
 // ];
 
@@ -118,7 +124,7 @@ const followPosts = [
     likes: 15,
     retweets: 4,
     replies: 6,
-    profileImage: "https://example.com/profile3.jpg",
+    profileImageUrl: "/images/elephant.jpg",
     category: "恋愛",
   },
   {
@@ -130,7 +136,7 @@ const followPosts = [
     likes: 25,
     retweets: 7,
     replies: 8,
-    profileImage: "https://example.com/profile4.jpg",
+    profileImageUrl: "/images/star.jpg",
     category: "恋愛",
   },
 ];
@@ -145,7 +151,7 @@ const controversialPosts = [
     likes: 50,
     retweets: 20,
     replies: 30,
-    profileImage: "https://example.com/profile5.jpg",
+    profileImageUrl: "/images/crab.jpg",
     malePercentage: 60,
     femalePercentage: 40,
   },
@@ -157,7 +163,7 @@ const controversialPosts = [
     likes: 35,
     retweets: 10,
     replies: 22,
-    profileImage: "https://example.com/profile6.jpg",
+    profileImageUrl: "/images/bird.jpg",
     malePercentage: 55,
     femalePercentage: 45,
     category: "恋愛",
@@ -170,7 +176,7 @@ const controversialPosts = [
     likes: 45,
     retweets: 12,
     replies: 19,
-    profileImage: "https://example.com/profile7.jpg",
+    profileImageUrl: "/images/kurage.jpg",
     malePercentage: 50,
     femalePercentage: 50,
     category: "恋愛",

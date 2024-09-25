@@ -10,7 +10,8 @@ const FloatingButton: FC<FloatingButtonProps> = ({ onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="floating-button" // CSSクラスを適用
+      className="floating-button tooltip" // CSSクラスを適用
+      data-tooltip="投稿する"
     >
       <PlusIcon className="w-6 h-6" />
     </button>

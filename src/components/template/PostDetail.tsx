@@ -45,7 +45,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ post }) => {
     >
       <div className="post-header">
         <motion.img
-          src={post.profileImage}
+          src={post.profileImageUrl}
           alt={post.username}
           className="profile-image"
           initial={{ z: -200, opacity: 0 }}

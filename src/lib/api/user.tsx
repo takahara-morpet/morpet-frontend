@@ -23,6 +23,7 @@ export const fetchUserDetail = async (id: string): Promise<UserDetail> => {
     console.log(response.data);
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };

@@ -38,17 +38,42 @@
 }
 
 .gender-icon {
-  width: 24px;
-  height: 24px;
+  width: 36px; /* フッターのアイコンと同じサイズに設定 */
+  height: 36px; /* フッターのアイコンと同じサイズに設定 */
+  margin: 0 10px; /* アイコンとバーの間の余白 */
+  display: flex;
+
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.6s ease, color 0.6s ease, transform 0.6s ease;
+}
+.gender-icon.male {
+  color : #0056b3;
+}
+.gender-icon.female{
+  color : #ff4d4d
 }
 
-.male {
-  color: #007bff;
+.gender-icon:hover {
+  background-color: #ffffff; 
+  color: #ff4d4d; 
+  transform: scale(1.1); 
 }
 
-.female {
-  color: #ff4d4d;
+.gender-icon.male:hover {
+  background-color: #ffffff; 
+  color: #0057b3b6; 
 }
+
+.gender-icon.female:hover {
+  background-color: #ffffff; 
+  color: #cc0000a3; 
+}
+
+
+
+
+
 /* 男性優位のアニメーション */
 .male-animation {
   position: fixed;
