@@ -79,7 +79,7 @@ const selfPosts = [
 const likePosts = [
   {
     id: 120,
-    username: "フォロー中ユーザー1",
+    username: "ひとで",
     handle: "follow_user1",
     time: "3時間前",
     content: "今日はランニングをしました。",
@@ -91,8 +91,9 @@ const likePosts = [
   },
   {
     id: 478923,
-    username: "フォロー中ユーザー2",
+    username: "フぺんぎん",
     handle: "follow_user2",
+    
     time: "4時間前",
     content: "新しい本を読みました。面白かった！",
     likes: 25,
