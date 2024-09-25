@@ -116,7 +116,7 @@ const Post: React.FC<PostProps> = ({
               <div className="post-header">
                 <span className="username">{username}</span>
                 <span className="handle">@{handle}</span>
-                <span className="time">・{time}</span>
+                {/* <span className="time">・{time}</span> */}
               </div>
               <div className="post-content">{content}</div>
               <div className="post-category">
