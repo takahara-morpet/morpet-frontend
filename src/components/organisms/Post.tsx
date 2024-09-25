@@ -55,7 +55,6 @@ const Post: React.FC<PostProps> = ({
   return (
     <div className="post anim-box kiran">
       <div className="post-content-wrapper">
-        <Link href={link}>
           <div className="post-link-content">
             <Image src={profileImage} alt="Profile" className="profile-img" width={40} height={40} />
             <div className="post-body">
@@ -71,7 +70,6 @@ const Post: React.FC<PostProps> = ({
               </div>
             </div>
           </div>
-        </div>
 
         <div className="post-actions">
           {/* 返信ボタン */}
@@ -90,7 +88,7 @@ const Post: React.FC<PostProps> = ({
             <span>{likesCount}</span>
           </div>
         </div>
-      </div>
+      </div>  
     </div>
   );
 };
