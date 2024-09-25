@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"; // useRouter をインポート
 import { ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconOutline } from "@heroicons/react/24/outline";
 import { HeartIcon as HeartIconSolid } from "@heroicons/react/24/solid"; // 必要なアイコンだけをインポート
 import "./Post.css";
+import GenderBar from "../modules/GenderBar";
+import { fetchPostById, updatePostPercentage } from "@/lib/api/post";
+import { PostPercentageUpdateResponse } from "@/types/response/post";
 import Image from "next/image";
 
 interface PostProps {
+  id: number;
   username: string;
   handle: string;
   time: string;
@@ -20,6 +24,7 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({
+  id,
   username,
   handle,
   time,
@@ -34,6 +39,24 @@ const Post: React.FC<PostProps> = ({
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(likes);
   const router = useRouter(); // useRouter フックを使ってルーターにアクセス
+  const [malePercentage, setMalePercentage] = useState(50);
+  const [femalePercentage, setFemalePercentage] = useState(50);
+
+  useEffect(() => {
+    // ページ初期読み込み時にバックエンドからパーセンテージを取得
+    const fetchPercentages = async () => {
+      try {
+        const response = await fetchPostById(String(id));
+
+        setMalePercentage(response.malePercentage);
+        setFemalePercentage(response.femalePercentage);
+      } catch (error) {
+        console.error("Failed to fetch percentages:", error);
+      }
+    };
+
+    fetchPercentages();
+  }, [id]);
 
   const handleLikeClicked = () => {
     if (isLiked) {
@@ -46,6 +69,39 @@ const Post: React.FC<PostProps> = ({
     }
   };
 
+  const handleMaleClick = () => {
+    if (malePercentage < 100) {
+      const newMalePercentage = Math.min(malePercentage + 10, 100);
+      const newFemalePercentage = Math.max(femalePercentage - 10, 0);
+      setMalePercentage(newMalePercentage);
+      setFemalePercentage(newFemalePercentage);
+      updatePercentages(newMalePercentage, newFemalePercentage);
+    }
+  };
+
+  const handleFemaleClick = () => {
+    if (femalePercentage < 100) {
+      const newFemalePercentage = Math.min(femalePercentage + 10, 100);
+      const newMalePercentage = Math.max(malePercentage - 10, 0);
+      setFemalePercentage(newFemalePercentage);
+      setMalePercentage(newMalePercentage);
+      updatePercentages(newMalePercentage, newFemalePercentage);
+    }
+  };
+  const updatePercentages = async (
+    newMalePercentage: number,
+    newFemalePercentage: number
+  ) => {
+    try {
+      const percentages: PostPercentageUpdateResponse = {
+        malePercentage: newMalePercentage,
+        femalePercentage: newFemalePercentage,
+      };
+      await updatePostPercentage(String(id), percentages);
+    } catch (error) {
+      console.error("Failed to update percentages:", error);
+    }
+  };
   // 返信ボタンクリック時にページ遷移
   const handleReplyClick = () => {
     router.push(link); // 指定されたリンクに遷移
@@ -91,7 +147,13 @@ const Post: React.FC<PostProps> = ({
             <span>{likesCount}</span>
           </div>
         </div>
-      </div>  
+        <GenderBar
+          malePercentage={malePercentage}
+          femalePercentage={femalePercentage}
+          onMaleClick={handleMaleClick}
+          onFemaleClick={handleFemaleClick}
+        />
+      </div>
     </div>
   );
 };

@@ -43,6 +43,7 @@ const PostList: React.FC<PostListProps> = ({ posts }) => {
             transition={{ duration: 0.5, delay: index * 0.1 }} // 遅延を追加してフェードインを調整
           >
             <Post
+              id={post.id}
               username={post.username}
               handle={post.handle ?? ""}
               time={post.time ?? "Unknown"}
