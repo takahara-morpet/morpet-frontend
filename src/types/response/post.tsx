@@ -5,4 +5,5 @@ export type PostGetResponse = {
   category: string;
   createdAt: string;
   updatedAt: string;
+  profileImageUrl: string;
 };

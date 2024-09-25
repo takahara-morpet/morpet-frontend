@@ -26,7 +26,7 @@ const Page: React.FC = () => {
           content: post.content,
           likes: 0,
           replies: 0,
-          profileImage: "/images/suga.jpg",
+          profileImage: post.profileImageUrl,
           category: post.category,
         })); // PostData型に変換
         setPosts(mappedPosts);
@@ -37,7 +37,7 @@ const Page: React.FC = () => {
     fetchData();
   }, []);
   const handleNewPost = (newPost: PostData) => {
-    setPosts([newPost, ...(recommendPosts || [])]); // 新しい投稿を先頭に追加
+    setPosts([...(recommendPosts || []), newPost]); // 新しい投稿を先頭に追加
   };
 
   const handleTabClick = (tab: "recommend" | "follow" | "controversial") => {

@@ -3,6 +3,7 @@ import "./PostBox.css";
 import { createPosts } from "@/lib/api/post";
 import { PostCreateRequest } from "@/types/request/post";
 import { PostData } from "../template/PostList";
+import { fetchUserDetail } from "@/lib/api/user";
 
 export interface PostBoxProps {
   onPostCreate: (newPost: PostData) => void; // 投稿完了時に呼び出されるコールバック関数
@@ -11,11 +12,14 @@ export interface PostBoxProps {
 const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
   const [text, setText] = useState("");
   const [category, setCategory] = useState("ときめき"); // 初期カテゴリを設定
+  const [name, setName] = useState("山田太郎");
+  const [profileImageUrl, setProfileImageUrl] = useState("/images/star.png");
   const [error, setError] = useState<string | null>(null); // エラーメッセージを保持
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
+
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCategory(e.target.value);
   };
@@ -27,20 +31,28 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate }) => {
     }
 
     const userId = localStorage.getItem("userId");
-    console.log("userId:" + String(userId));
+    let UserDetail = { profileImageUrl: "/images/star.png", name: "山田太郎" };
+    if (userId !!= null) {
+      UserDetail = await fetchUserDetail(userId);
+      console.log("UserDetail:" + UserDetail);
+    }
+    setName(UserDetail.name);
+    setProfileImageUrl(UserDetail.profileImageUrl);
+    console.log("userId:" + String(userId), "name:" + name, "profileImageUrl:" + profileImageUrl);
     const postCreateRequest: PostCreateRequest = {
       // 一旦
       userId: Number(userId),
       category: category,
-      content: text, // テキストを postData として設定
+      content: text,
+      profileImageUrl: profileImageUrl,
     };
     const postData: PostData = {
       id: 1,
-      username: userId + "usertest",
+      username: name,
       content: text,
       likes: 0,
       replies: 0,
-      profileImage: "",
+      profileImage: profileImageUrl,
       category: category,
     };
 
