@@ -1,44 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { UserIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
 import "./GenderBar.css";
 
-const GenderBar: React.FC = () => {
-  const [malePercentage, setMalePercentage] = useState(50);
-  const [femalePercentage, setFemalePercentage] = useState(50);
+interface GenderBarProps {
+  malePercentage: number;
+  femalePercentage: number;
+  onMaleClick: () => void;
+  onFemaleClick: () => void;
+}
+
+const GenderBar: React.FC<GenderBarProps> = ({
+  malePercentage,
+  femalePercentage,
+  onMaleClick,
+  onFemaleClick,
+}) => {
   const [showMaleAnimation, setShowMaleAnimation] = useState(false);
   const [showFemaleAnimation, setShowFemaleAnimation] = useState(false);
 
+  // 男性アイコンを押した時のアニメーション
   const handleMaleClick = () => {
-    if (malePercentage < 100) {
-      setMalePercentage((prev) => Math.min(prev + 10, 100));
-      setFemalePercentage((prev) => Math.max(prev - 10, 0));
-      setShowMaleAnimation(true);
-      setTimeout(() => {
-        setShowMaleAnimation(false);
-      }, 1500);
-    }
+    setShowMaleAnimation(true);
+    setTimeout(() => {
+      setShowMaleAnimation(false);
+    }, 1500); // アニメーションを1.5秒再生
+    onMaleClick(); // サーバー側でパーセンテージを更新
   };
 
+  // 女性アイコンを押した時のアニメーション
   const handleFemaleClick = () => {
-    if (femalePercentage < 100) {
-      setFemalePercentage((prev) => Math.min(prev + 10, 100));
-      setMalePercentage((prev) => Math.max(prev - 10, 0));
-      setShowFemaleAnimation(true);
-      setTimeout(() => {
-        setShowFemaleAnimation(false);
-      }, 1500);
-    }
+    setShowFemaleAnimation(true);
+    setTimeout(() => {
+      setShowFemaleAnimation(false);
+    }, 1500);
+    onFemaleClick(); // サーバー側でパーセンテージを更新
   };
 
   // パーティクルエフェクトのための配列
-  const particles = Array.from({ length: 50 }); // パーティクルの数を増やす
+  const particles = Array.from({ length: 50 });
 
   // 男性のパーティクルカラー
   const getMaleColor = () => {
     const colors = ["#0066ff", "#00ccff", "#3399ff", "#99ccff", "#0033cc"];
     return colors[Math.floor(Math.random() * colors.length)];
   };
+
   // 女性のパーティクルカラー
   const getFemaleColor = () => {
     const colors = ["#ff66b2", "#ff99cc", "#ff3399", "#ffccff", "#cc6699"];
@@ -67,7 +74,7 @@ const GenderBar: React.FC = () => {
                 className="particle"
                 key={i}
                 style={{
-                  backgroundColor: getMaleColor(), // 男性用パーティクルカラー
+                  backgroundColor: getMaleColor(),
                   width: `${Math.random() * 20 + 10}px`,
                   height: `${Math.random() * 20 + 10}px`,
                 }}
@@ -75,8 +82,8 @@ const GenderBar: React.FC = () => {
                 animate={{
                   scale: [0.5, 1.5, 2],
                   opacity: [1, 0.8, 0],
-                  x: (Math.random() - 0.5) * 800, // より大きく飛び出す
-                  y: (Math.random() - 0.5) * 800, // より大きく飛び出す
+                  x: (Math.random() - 0.5) * 800,
+                  y: (Math.random() - 0.5) * 800,
                 }}
                 transition={{ duration: 1.5, ease: "easeOut" }}
               />
@@ -103,7 +110,7 @@ const GenderBar: React.FC = () => {
                 className="particle"
                 key={i}
                 style={{
-                  backgroundColor: getFemaleColor(), // 女性用パーティクルカラー
+                  backgroundColor: getFemaleColor(),
                   width: `${Math.random() * 20 + 10}px`,
                   height: `${Math.random() * 20 + 10}px`,
                 }}
@@ -120,6 +127,7 @@ const GenderBar: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
       <div className="gender-row">
         {/* 男性アイコン */}
         <UserIcon className="gender-icon male" onClick={handleMaleClick} />
