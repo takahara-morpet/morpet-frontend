@@ -134,8 +134,7 @@ const GenderBar: React.FC<GenderBarProps> = ({
           className="gender-icon male tooltip"
           data-tooltip="男性側に投票"
           onClick={handleMaleClick}
-          tabIndex={0} 
-
+          tabIndex={0}
           role="button"
           aria-label="男性側に投票"
         >
