@@ -1,3 +1,4 @@
+// Page.tsx
 "use client"; // クライアントコンポーネントとして指定
 import "../globals.css"; // CSSファイルをインポート
 
@@ -12,7 +13,70 @@ const Page: React.FC = () => {
     "recommend" | "follow" | "controversial"
   >("recommend"); // 初期タブは「おすすめ」
 
-  const [recommendPosts, setPosts] = useState<PostData[] | null>(null);
+  const [recommendPosts, setRecommendPosts] = useState<PostData[] | null>(null);
+  const [followPosts, setFollowPosts] = useState<PostData[]>([
+    {
+      id: 32222222,
+      username: "フォロー中ユーザー1",
+      handle: "follow_user1",
+      time: "3時間前",
+      content: "今日はランニングをしました。",
+      likes: 15,
+      replies: 6,
+      profileImage: "https://example.com/profile3.jpg",
+      category: "恋愛",
+    },
+    {
+      id: 85743,
+      username: "フォロー中ユーザー2",
+      handle: "follow_user2",
+      time: "4時間前",
+      content: "新しい本を読みました。面白かった！",
+      likes: 25,
+      replies: 8,
+      profileImage: "https://example.com/profile4.jpg",
+      category: "恋愛",
+    },
+  ]);
+
+  const [controversialPosts, setControversialPosts] = useState<any[]>([
+    {
+      username: "木村 拓",
+      handle: "taku_kimura",
+      time: "5時間前",
+      content: "最近のトレンドには賛否があるけど、僕は肯定派。",
+      likes: 50,
+      replies: 30,
+      profileImage: "https://example.com/profile5.jpg",
+      malePercentage: 60,
+      femalePercentage: 40,
+      category: "恋愛",
+    },
+    {
+      username: "田中 美沙",
+      handle: "misa_tanaka",
+      time: "6時間前",
+      content: "その意見には反対だけど、意見交換は大事だね。",
+      likes: 35,
+      replies: 22,
+      profileImage: "https://example.com/profile6.jpg",
+      malePercentage: 55,
+      femalePercentage: 45,
+      category: "恋愛",
+    },
+    {
+      username: "中村 勇",
+      handle: "isamu_nakamura",
+      time: "7時間前",
+      content: "議論の余地がある問題だけど、自分の立場を明確にしたい。",
+      likes: 45,
+      replies: 19,
+      profileImage: "https://example.com/profile7.jpg",
+      malePercentage: 50,
+      femalePercentage: 50,
+      category: "恋愛",
+    },
+  ]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,15 +93,16 @@ const Page: React.FC = () => {
           profileImage: "/images/suga.jpg",
           category: post.category,
         })); // PostData型に変換
-        setPosts(mappedPosts);
+        setRecommendPosts(mappedPosts);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
   }, []);
+
   const handleNewPost = (newPost: PostData) => {
-    setPosts([newPost, ...(recommendPosts || [])]); // 新しい投稿を先頭に追加
+    setRecommendPosts([newPost, ...(recommendPosts || [])]); // 新しい投稿を先頭に追加
   };
 
   const handleTabClick = (tab: "recommend" | "follow" | "controversial") => {
@@ -73,8 +138,7 @@ const Page: React.FC = () => {
         {activeTab === "follow" && <PostList posts={followPosts} />}
         {activeTab === "controversial" && (
           <PostListBar posts={controversialPosts} />
-        )}{" "}
-        {/* PostListBar に変更 */}
+        )} {/* PostListBar に変更 */}
       </div>
       <SubmitButton onPostCreate={handleNewPost} />
     </div>
@@ -82,6 +146,7 @@ const Page: React.FC = () => {
 };
 
 export default Page;
+
 
 // // おすすめの投稿データ
 // const recommendPosts = [
