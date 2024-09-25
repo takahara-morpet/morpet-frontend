@@ -25,14 +25,13 @@ const PostPage = () => {
   }, [id]);
 
   const fetchPostData = async () => {
-    
     try {
       const postlist = await fetchPosts();
       const userId = postlist.find((post) => post.id === Number(id))?.userId;
       console.log("ユーザーID:", userId);
       const fetchData = async () => {
         const user = await fetchUserDetail(String(userId));
-  
+
         if (!user) {
           setError("ユーザー情報が取得できませんでした。");
           return;
@@ -61,10 +60,12 @@ const PostPage = () => {
     try {
       if (post === null) return;
       const replyGetResponse = await fetchRepliesById(String(id));
-      const userId = replyGetResponse.find((reply) => reply.postId === Number(id))?.senderId;
+      const userId = replyGetResponse.find(
+        (reply) => reply.postId === Number(id)
+      )?.senderId;
       const fetchData = async () => {
         const user = await fetchUserDetail(String(userId));
-  
+
         if (!user) {
           setError("ユーザー情報が取得できませんでした。");
           return;
@@ -78,7 +79,7 @@ const PostPage = () => {
           category: post.category,
         }));
         setReplies(replyList);
-      }
+      };
       await fetchData();
     } catch (err) {
       console.error("Failed to fetch replies:", err);
@@ -100,13 +101,7 @@ const PostPage = () => {
       const newReplyId = await createReply(newReplyRequest);
       setNewReplyId(newReplyId); // 新しく投稿されたリプライのIDを設定
       setIsNewReplyVisible(true); // 新規リプライのアニメーションを開始
-      // const newReply: ReplyData = {
-      //   id: newReplyId,
-      //   senderName: String(tmpUserId) + "user",
-      //   time: reply.sentAt,
-      //   content: reply.content,
-      //   profileImage: "/images/suga.jpg",
-      // };
+
       await fetchRepliesByPostId();
     } catch (err) {
       setError(err as Error);
@@ -120,7 +115,10 @@ const PostPage = () => {
   if (!post) {
     return <p>Loading...</p>;
   }
-  if (error) return <div>Error: {typeof error === 'string' ? error : error.message}</div>;
+  if (error)
+    return (
+      <div>Error: {typeof error === "string" ? error : error.message}</div>
+    );
 
   const replyVariants = {
     hidden: {

@@ -7,17 +7,16 @@ export interface UserIconProps {
   id: number;
   name: string;
   profileImageUrl: string;
+  lastMessage?: string; // 最後のメッセージを表示するためにプロパティを追加
 }
 
-const UserIcon: React.FC<UserIconProps> = ({ profileImageUrl, name, id }) => {
-  const { handleProfileClick } = useProfileNavigation(); // Still handling the click!
+const UserIcon: React.FC<UserIconProps> = ({ profileImageUrl, name, id, lastMessage }) => {
+  const { handleProfileClick } = useProfileNavigation(); // プロフィールクリック用の関数
 
   return (
-    <div
-      className="user-icon-card clickable" // Updated class names
-      onClick={() => handleProfileClick(id)} // Clicking magic happening here
-    >
+    <div className="user-icon-card dm-layout clickable" onClick={() => handleProfileClick(id)}>
       <div className="icon-container">
+        {/* ユーザーのプロフィール画像 */}
         <Image
           src={profileImageUrl}
           alt={`${name}'s profile`}
@@ -29,6 +28,13 @@ const UserIcon: React.FC<UserIconProps> = ({ profileImageUrl, name, id }) => {
           <h2 className="icon-name">{name}</h2>
           <p className="icon-id">@{name+id}</p>
         </div>
+      </div>
+
+      {/* DM メッセージを表示 */}
+      <div className="dm-message-container">
+        {lastMessage&&
+          <p className="dm-message">{lastMessage}</p>
+        }
       </div>
     </div>
   );

@@ -7,7 +7,9 @@
   border-radius: 10px;
   background-color: #f9f9f9;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 .user-icon-card:hover {
   transform: translateY(-5px);
@@ -17,6 +19,8 @@
 .icon-container {
   display: flex;
   align-items: center;
+  /* justify-content: space-between;  */
+  width: 50%;
 }
 
 .icon-avatar {
@@ -30,6 +34,7 @@
 .icon-text {
   display: flex;
   flex-direction: column;
+  margin-right: auto;
 }
 
 .icon-name {
@@ -48,4 +53,29 @@
 }
 .clickable:hover {
   background-color: #e0f7fa;
+}
+.dm-message-container {
+  flex-grow: 1;
+  padding-left: 15px;
+}
+
+.dm-message {
+  font-size: 16px;
+  margin-left: 20px; /* 名前とメッセージの間にスペースを設ける */
+  font: bold;
+  color: #333;
+  margin-left: 20px;
+  white-space: nowrap; /* テキストが折り返されないようにする */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.no-message {
+  color: #333;
+}
+
+.dm-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
