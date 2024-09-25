@@ -72,13 +72,17 @@ const Post: React.FC<PostProps> = ({
 
         <div className="post-actions">
           {/* 返信ボタン */}
-          <div className="post-action" onClick={handleReplyClick}>
+          <div className="post-action tooltip henshin" 
+            data-tooltip="返信"
+            onClick={handleReplyClick}>
             <ChatBubbleLeftIcon className="icon" />
             <span>{replies}</span>
           </div>
 
           {/* いいねボタン */}
-          <div className="post-action" onClick={handleLikeClicked}>
+          <div className="post-action tooltip iine"
+             data-tooltip="いいね"
+             onClick={handleLikeClicked}>
             {isLiked ? (
               <HeartIconSolid className="icon liked" />
             ) : (
