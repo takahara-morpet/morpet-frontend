@@ -1,7 +1,7 @@
 import getEndpoint from '@/lib/api/url';
 
 export const DEV_SERVER_URL = "http://localhost:8080"
-export const PRO_SERVER_URL = "https://graph.shion.pro/api/v0"
+export const PRO_SERVER_URL = "https://takahara-morpet-36949f6ab0f6.herokuapp.com"
 
 export const USERS_URL = `${getEndpoint()}/users`
 export const USERS_DETAIL_URL = `${getEndpoint()}/users`
