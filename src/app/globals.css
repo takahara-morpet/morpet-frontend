@@ -52,7 +52,7 @@ body {
   border-bottom: 2px solid #e0e0e0;
   position: sticky; /* stickyでスクロールしても画面上に残るようにする */
   top: 0; /* 画面の上部に固定 */
-  z-index: 100; /* コンテンツの上に表示 */
+  z-index: 10; /* コンテンツの上に表示 */
 }
 
 /* タブボタンのスタイル */
@@ -136,4 +136,8 @@ body {
 .tooltip:hover::after {
   opacity: 0.7;
   visibility: visible;
+}
+
+.invisible{
+  display: none;
 }

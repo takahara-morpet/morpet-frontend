@@ -1,4 +1,6 @@
 /* Post.css */
+
+/* 共通スタイル */
 .post {
   display: flex;
   border: 1px solid #e1e8ed;
@@ -15,6 +17,20 @@
   border-radius: 50%;
   margin-right: 10px;
 }
+
+.post-content-wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.post-link-content {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+}
+
+
 
 .post-body {
   display: flex;
@@ -43,27 +59,60 @@
 
 .post-actions {
   display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  color: #657786;
+  justify-content: space-around;
+  padding: 8px;
+  margin-top: 8px;
 }
 
-.post-actions span {
-  margin-right: 15px;
+.post-action {
+  display: flex;
+  align-items: center;
   cursor: pointer;
+  background-color: #ffffff;
+  color: #555555;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: transform 0.2s, color 0.2s;
 }
 
-.post-action .icon {
+/* 返信ボタンのスタイル */
+.henshin:hover .icon {
+  color: #28a745; /* 緑色 */
+}
+
+/* いいねボタンのスタイル */
+.iine:hover {
+  color: #de2222; /* ホバー時の色 */
+  transform: scale(1.1);
+}
+
+.liked {
+  color: red; /* いいねされた状態 */
+}
+
+.icon {
   width: 18px;
   height: 18px;
   margin-right: 5px;
 }
-.post-action:hover {
-  color: #1d9bf0; /* アイコンホバー時の色を青に */
-}
-/* Post.css */
 
-.anim-box.kiran {
+.post-category {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #657786; /* カテゴリーの色 */
+}
+
+.category {
+  padding: 2px 6px;
+  background-color: #e6f3ff;
+  border-radius: 12px;
+  color: #007bff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* .anim-box.kiran {
   opacity: 1;
   overflow: hidden;
   position: relative;
@@ -85,7 +134,7 @@
 
 .anim-box.kiran:hover::before {
   animation: kiran 0.5s linear;
-}
+} */
 
 @keyframes kiran {
   0% {
@@ -108,54 +157,4 @@
     transform: scale(50) rotate(45deg);
     opacity: 0;
   }
-}
-.liked {
-  color: red;
-}
-
-.post-content-wrapper {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-}
-
-.post-link-content {
-  display: flex;
-  text-decoration: none;
-  color: inherit;
-}
-
-.post-link-content:hover {
-  background-color: #f5f8fa; /* ホバー時の背景色 */
-}
-
-.post-actions {
-  display: flex;
-  justify-content: space-around;
-  padding: 8px;
-  margin-top: 8px;
-}
-
-.post-action {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.post-action:hover .icon {
-  color: #1da1f2; /* ホバー時のアイコン色 */
-}
-.post-category {
-  margin-top: 8px;
-  font-size: 12px;
-  color: #657786; /* カテゴリーの色 */
-}
-
-.category {
-  padding: 2px 6px;
-  background-color: #e6f3ff;
-  border-radius: 12px;
-  color: #007bff;
-  font-size: 12px;
-  font-weight: bold;
 }

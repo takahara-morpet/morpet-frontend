@@ -40,7 +40,6 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate, onCloseModal }) => {
       try {
         const user = await fetchUserDetail(String(userId));
         console.log(user);
-        // setUserData(user);
   
         if (!user) {
           setError("ユーザー情報が取得できませんでした。");

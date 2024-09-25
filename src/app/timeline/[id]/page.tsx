@@ -9,59 +9,77 @@ import ReplyList, { ReplyData } from "@/components/template/ReplyList";
 import { ReplyCreateRequest } from "@/types/request/reply";
 import { createReply, fetchRepliesById } from "@/lib/api/reply";
 import { motion } from "framer-motion"; // framer-motionをインポート
+import { fetchUserDetail } from "@/lib/api/user";
 
 const PostPage = () => {
   const { id } = useParams();
   const [post, setPost] = useState<PostData | null>(null);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<Error | string | null>(null);
   const [replies, setReplies] = useState<ReplyData[]>([]);
   const [newReplyId, setNewReplyId] = useState<number | null>(null); // 新しいリプライをトラッキング
   const [isNewReplyVisible, setIsNewReplyVisible] = useState(true); // 新規リプライの可視フラグ
 
-  // ページ初期読み込み時にデータを取得
   useEffect(() => {
-    const fetchInitialData = async () => {
-      await fetchPostData(); // 投稿データを取得
-      await fetchRepliesByPostId(); // リプライデータを取得
-    };
-
-    fetchInitialData(); // コンポーネントの初期化時に実行
-  }, [id]); // id が変更された時にも実行
+    fetchPostData();
+    fetchRepliesByPostId();
+  }, [id]);
 
   const fetchPostData = async () => {
+    
     try {
       const postlist = await fetchPosts();
-      const mappedPosts = postlist.map((post) => ({
-        id: post.id,
-        username: String(post.userId) + "suga",
-        handle: "handle",
-        time: "time",
-        content: post.content,
-        likes: 0,
-        replies: 0,
-        profileImage: "/images/suga.jpg",
-        category: post.category,
-      }));
-      const postData = mappedPosts.find((post) => post.id === Number(id));
-      setPost(postData || null);
+      const userId = postlist.find((post) => post.id === Number(id))?.userId;
+      console.log("ユーザーID:", userId);
+      const fetchData = async () => {
+        const user = await fetchUserDetail(String(userId));
+  
+        if (!user) {
+          setError("ユーザー情報が取得できませんでした。");
+          return;
+        }
+        const mappedPosts = postlist.map((post) => ({
+          id: post.id,
+          username: user.name,
+          handle: "handle",
+          time: "time",
+          content: post.content,
+          likes: 0,
+          replies: 0,
+          profileImageUrl: user.profileImageUrl,
+          category: post.category,
+        }));
+        const postData = mappedPosts.find((post) => post.id === Number(id));
+        setPost(postData || null);
+      };
+      await fetchData();
     } catch (err) {
       setError(err as Error);
       console.log(err);
     }
   };
-
   const fetchRepliesByPostId = async () => {
     try {
+      if (post === null) return;
       const replyGetResponse = await fetchRepliesById(String(id));
-      const replyList = replyGetResponse.map((reply) => ({
-        id: reply.id,
-        senderName: String(reply.senderId) + "user",
-        time: reply.sentAt,
-        content: reply.content,
-        profileImage: "/images/suga.jpg",
-        category: post?.category || "default", // postがない場合でもカテゴリを設定
-      }));
-      setReplies(replyList);
+      const userId = replyGetResponse.find((reply) => reply.postId === Number(id))?.senderId;
+      const fetchData = async () => {
+        const user = await fetchUserDetail(String(userId));
+  
+        if (!user) {
+          setError("ユーザー情報が取得できませんでした。");
+          return;
+        }
+        const replyList = replyGetResponse.map((reply) => ({
+          id: reply.id,
+          senderName: user.name,
+          time: reply.sentAt,
+          content: reply.content,
+          profileImage: user.profileImageUrl,
+          category: post.category,
+        }));
+        setReplies(replyList);
+      }
+      await fetchData();
     } catch (err) {
       console.error("Failed to fetch replies:", err);
     }
@@ -82,7 +100,14 @@ const PostPage = () => {
       const newReplyId = await createReply(newReplyRequest);
       setNewReplyId(newReplyId); // 新しく投稿されたリプライのIDを設定
       setIsNewReplyVisible(true); // 新規リプライのアニメーションを開始
-      await fetchRepliesByPostId(); // 新しいリプライが反映されるよう再度リプライデータを取得
+      // const newReply: ReplyData = {
+      //   id: newReplyId,
+      //   senderName: String(tmpUserId) + "user",
+      //   time: reply.sentAt,
+      //   content: reply.content,
+      //   profileImage: "/images/suga.jpg",
+      // };
+      await fetchRepliesByPostId();
     } catch (err) {
       setError(err as Error);
     }
@@ -95,7 +120,7 @@ const PostPage = () => {
   if (!post) {
     return <p>Loading...</p>;
   }
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div>Error: {typeof error === 'string' ? error : error.message}</div>;
 
   const replyVariants = {
     hidden: {

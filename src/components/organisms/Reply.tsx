@@ -1,6 +1,6 @@
 import React from "react";
 import "./Reply.css";
-
+import Image from "next/image";
 interface ReplyProps {
   senderName: string;
   content: string;
@@ -34,7 +34,7 @@ const Reply: React.FC<ReplyProps> = ({
   };
   return (
     <div className={`reply ${categoryClass()}`}>
-      <img src={profileImage} alt="Profile" className="profile-img" />
+      <Image src={profileImage} alt="Profile" className="profile-img" width={40} height={40} />
       <div className="reply-body">
         <div className="reply-header">
           <span className="sender-name">{senderName}</span>

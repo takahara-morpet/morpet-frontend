@@ -30,13 +30,13 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
 }) => {
   return (
     <div className="signup-container">
-      <h2>Sign Up</h2>
+      <h2>登録フォーム</h2>
       {error && <p className="error-message">{error}</p>}
       {successMessage && <p className="success-message">{successMessage}</p>}
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">名前:</label>
           <input
             type="text"
             id="name"
@@ -47,7 +47,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
           />
         </div>
         <div>
-          <label htmlFor="age">Age:</label>
+          <label htmlFor="age">年齢:</label>
           <input
             type="number"
             id="age"
@@ -58,7 +58,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
           />
         </div>
         <div>
-          <label htmlFor="profile">Profile:</label>
+          <label htmlFor="profile">プロフィール:</label>
           <textarea
             name="profile"
             id="profile"
@@ -66,8 +66,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
             onChange={handleChange}
             required
           />
+        </div>
+        
           <div>
-            <label htmlFor="profileImageUrl">Profile Image:</label>
+            <label htmlFor="profileImageUrl">アイコン:</label>
             <select
               name="profileImageUrl"
               id="profileImageUrl"
@@ -75,7 +77,6 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
               onChange={handleChange}
               required
             >
-              <option value="/images/suga.jpg">Suga</option>
               <option value="/images/azarashi.jpg">あざらし</option>
               <option value="/images/bird.jpg">とり</option>
               <option value="/images/crab.jpg">かに</option>
@@ -87,7 +88,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
             </select>
           </div>
           <div>
-            <label htmlFor="gender">Gender:</label>
+            <label htmlFor="gender">性別:</label>
             <select
               name="gender"
               id="gender"
@@ -95,10 +96,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
               onChange={handleChange}
               required
             >
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
+              <option value="">性別を選択</option>
+              <option value="male">男性</option>
+              <option value="female">女性</option>
+              <option value="other">その他</option>
             </select>
           </div>
           <div>
@@ -112,8 +113,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
               required
             />
           </div>
-        </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit">登録</button>
       </form>
     </div>
   );
