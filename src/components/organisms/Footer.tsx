@@ -1,6 +1,6 @@
 "use client";
 // components/Footer.tsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import "./Footer.css";
 import {
@@ -12,7 +12,15 @@ import {
 } from "@heroicons/react/24/outline"; // Heroiconsをインポート
 
 const Footer: React.FC = () => {
-  const userId = localStorage.getItem("userId");
+  const [userId, setUserId] = useState<string | null>(null); // 初期値はnull
+
+  // クライアントサイドでのみlocalStorageにアクセス
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []); // 初回レンダー時にのみ実行
 
   return (
     <footer className="footer">
