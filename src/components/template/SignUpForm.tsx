@@ -67,15 +67,24 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
             required
           />
           <div>
-            <label htmlFor="profileImageUrl">Profile Image Url:</label>
-            <input
-              type="text"
+            <label htmlFor="profileImageUrl">Profile Image:</label>
+            <select
               name="profileImageUrl"
               id="profileImageUrl"
               value={formData.profileImageUrl}
               onChange={handleChange}
               required
-            />
+            >
+              <option value="/images/suga.jpg">Suga</option>
+              <option value="/images/azarashi.jpg">あざらし</option>
+              <option value="/images/bird.jpg">とり</option>
+              <option value="/images/crab.jpg">かに</option>
+              <option value="/images/elephant.jpg">ぞう</option>
+              <option value="/images/kurage.jpg">くらげ</option>
+              <option value="/images/lion.jpg">らいおん</option>
+              <option value="/images/penguin.jpg">ぺんぎん</option>
+              <option value="/images/star.jpg">ひとで</option>
+            </select>
           </div>
           <div>
             <label htmlFor="gender">Gender:</label>

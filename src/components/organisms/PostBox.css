@@ -36,12 +36,6 @@
   resize: none;
 }
 
-.post-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-}
-
 .post-button {
   background-color: #ff4d4d;
   color: white;

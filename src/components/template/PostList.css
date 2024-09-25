@@ -2,6 +2,6 @@
 .post-list {
   max-height: 500px;
   overflow-y: auto; /* スクロールを有効にする */
-  padding: 10px;
+  padding: 5px;
   border: 1px solid #ccc;
 }
