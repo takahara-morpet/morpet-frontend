@@ -30,9 +30,7 @@
   color: inherit;
 }
 
-.post-link-content:hover {
-  background-color: #f5f8fa; /* ホバー時の背景色 */
-}
+
 
 .post-body {
   display: flex;
@@ -114,7 +112,7 @@
   font-weight: bold;
 }
 
-.anim-box.kiran {
+/* .anim-box.kiran {
   opacity: 1;
   overflow: hidden;
   position: relative;
@@ -136,7 +134,7 @@
 
 .anim-box.kiran:hover::before {
   animation: kiran 0.5s linear;
-}
+} */
 
 @keyframes kiran {
   0% {

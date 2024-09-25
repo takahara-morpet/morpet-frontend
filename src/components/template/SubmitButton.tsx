@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import FloatingButton from '../modules/FloatingButton';
 import PostBox from '../organisms/PostBox';
 import { PostData } from './PostList';
+import { AnimatePresence, motion } from 'framer-motion'; 
 
 interface SubmitButtonProps {
   onPostCreate: (newPost: PostData) => void;
@@ -25,15 +26,31 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ onPostCreate }) => {
       {/* フローティングボタン */}
       <FloatingButton onClick={togglePostBox} />
 
-      {/* PostBoxの表示（ボタンを押したら画面中央に表示） */}
-      {showPostBox && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="relative z-50" onClick={(e) => e.stopPropagation()}>
-            <PostBox onPostCreate={onPostCreate} onCloseModal={handleCloseModal} />
+      <AnimatePresence>
+        {showPostBox && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <motion.div
+              className="relative z-50"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.8 }} 
+              animate={{ opacity: 1, scale: 1 }} 
+              exit={{ opacity: 0, scale: 0.8 }}    
+              transition={{ duration: 0.3 }}      
+            >
+              <PostBox onPostCreate={onPostCreate} onCloseModal={handleCloseModal} />
+            </motion.div>
+            {/* 背景をクリックするとモーダルを閉じる */}
+            <motion.div
+              className="absolute inset-0"
+              onClick={handleCloseModal}
+              initial={{ opacity: 0 }}              
+              animate={{ opacity: 0.5 }}            
+              exit={{ opacity: 0 }}                 
+              transition={{ duration: 0.3 }}        
+            />
           </div>
-          <div className="absolute inset-0" onClick={handleCloseModal} />
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 };
