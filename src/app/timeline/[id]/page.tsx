@@ -120,7 +120,7 @@ const PostPage = () => {
   if (!post) {
     return <p>Loading...</p>;
   }
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div>Error: {typeof error === 'string' ? error : error.message}</div>;
 
   const replyVariants = {
     hidden: {
