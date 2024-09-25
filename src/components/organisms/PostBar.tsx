@@ -1,6 +1,5 @@
 import React from "react";
 import "./PostBar.css";
-import GenderBar from "../modules/GenderBar"; // GenderBarコンポーネントをインポート
 import Image from "next/image";
 export interface PostBarProps {
   username: string;
