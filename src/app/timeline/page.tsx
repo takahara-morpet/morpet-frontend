@@ -93,7 +93,7 @@ export default Page;
 //     likes: 20,
 //     retweets: 5,
 //     replies: 10,
-//     profileImage: 'https://example.com/profile1.jpg',
+//     profileImage: '/images/penguin.jpg',
 //   },
 //   {
 //     username: '佐藤 花子',
@@ -103,7 +103,7 @@ export default Page;
 //     likes: 30,
 //     retweets: 10,
 //     replies: 5,
-//     profileImage: 'https://example.com/profile2.jpg',
+//     profileImage: '/images/lion.jpg',
 //   },
 // ];
 
@@ -118,7 +118,7 @@ const followPosts = [
     likes: 15,
     retweets: 4,
     replies: 6,
-    profileImage: "https://example.com/profile3.jpg",
+    profileImage: "/images/elephant.jpg",
     category: "恋愛",
   },
   {
@@ -130,7 +130,7 @@ const followPosts = [
     likes: 25,
     retweets: 7,
     replies: 8,
-    profileImage: "https://example.com/profile4.jpg",
+    profileImage: "/images/star.jpg",
     category: "恋愛",
   },
 ];
@@ -145,7 +145,7 @@ const controversialPosts = [
     likes: 50,
     retweets: 20,
     replies: 30,
-    profileImage: "https://example.com/profile5.jpg",
+    profileImage: "/images/crab.jpg",
     malePercentage: 60,
     femalePercentage: 40,
   },
@@ -157,7 +157,7 @@ const controversialPosts = [
     likes: 35,
     retweets: 10,
     replies: 22,
-    profileImage: "https://example.com/profile6.jpg",
+    profileImage: "/images/bird.jpg",
     malePercentage: 55,
     femalePercentage: 45,
     category: "恋愛",
@@ -170,7 +170,7 @@ const controversialPosts = [
     likes: 45,
     retweets: 12,
     replies: 19,
-    profileImage: "https://example.com/profile7.jpg",
+    profileImage: "/images/kurage.jpg",
     malePercentage: 50,
     femalePercentage: 50,
     category: "恋愛",

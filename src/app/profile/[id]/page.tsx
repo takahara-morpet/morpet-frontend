@@ -59,33 +59,6 @@ const ProfilePage = (): JSX.Element => {
 
 export default ProfilePage;
 
-// デフォルトの架空のプロフィールを作成して
-// const defaultProfile = {
-//   icon: "/images/suga.jpg",
-//   name: "Suga",
-//   id: "suga0609",
-//   bio: "BTS. I am a rapper, songwriter, and record producer.",
-//   mbti: "INTJ",
-//   birthday: "March 9, 1993",
-//   gender: "Male",
-//   followers: [
-//     "jimin1013",
-//     "taehyung123",
-//     "jungkook456",
-//     "hoseok012",
-//     "namjoon345",
-//     "jin678",
-//   ],
-//   following: [
-//     "jimin1013",
-//     "taehyung123",
-//     "jungkook456",
-//     "hoseok012",
-//     "namjoon345",
-//     "jin678",
-//   ],
-// };
-
 // おすすめの投稿データ
 const selfPosts = [
   {
@@ -97,21 +70,9 @@ const selfPosts = [
     likes: 20,
     retweets: 5,
     replies: 10,
-    profileImage: "https://example.com/profile1.jpg",
+    profileImage: "/images/kurage.jpg",
     category: "恋愛",
-  },
-  {
-    id: 2,
-    username: "佐藤 花子",
-    handle: "hanako_sato",
-    time: "2時間前",
-    content: "美味しいご飯を食べました！",
-    likes: 30,
-    retweets: 10,
-    replies: 5,
-    profileImage: "https://example.com/profile2.jpg",
-    category: "恋愛",
-  },
+  }
 ];
 
 // フォロー中の投稿データ
@@ -125,7 +86,7 @@ const likePosts = [
     likes: 15,
     retweets: 4,
     replies: 6,
-    profileImage: "https://example.com/profile3.jpg",
+    profileImage: "/images/star.jpg",
     category: "恋愛",
   },
   {
@@ -137,7 +98,7 @@ const likePosts = [
     likes: 25,
     retweets: 7,
     replies: 8,
-    profileImage: "https://example.com/profile4.jpg",
+    profileImage: "/images/penguin.jpg",
     category: "恋愛",
   },
   {
@@ -149,7 +110,7 @@ const likePosts = [
     likes: 40,
     retweets: 9,
     replies: 13,
-    profileImage: "https://example.com/profile8.jpg",
+    profileImage: "/images/azarashi.jpg",
     category: "恋愛",
   },
   {
@@ -161,7 +122,7 @@ const likePosts = [
     likes: 60,
     retweets: 15,
     replies: 25,
-    profileImage: "https://example.com/profile9.jpg",
+    profileImage: "/images/suga.jpg",
     category: "恋愛",
   },
   {
@@ -173,7 +134,7 @@ const likePosts = [
     likes: 45,
     retweets: 10,
     replies: 17,
-    profileImage: "https://example.com/profile10.jpg",
+    profileImage: "/images/elephant.jpg",
     category: "恋愛",
   },
 ];
