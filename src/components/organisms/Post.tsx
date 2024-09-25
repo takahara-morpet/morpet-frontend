@@ -7,6 +7,7 @@ import "./Post.css";
 import GenderBar from "../modules/GenderBar";
 import { fetchPostById, updatePostPercentage } from "@/lib/api/post";
 import { PostPercentageUpdateResponse } from "@/types/response/post";
+import Image from "next/image";
 
 interface PostProps {
   id: number;
@@ -16,7 +17,7 @@ interface PostProps {
   content: string;
   likes: number;
   replies: number;
-  profileImage: string;
+  profileImageUrl: string;
   link: string;
   category: string; // カテゴリーを追加
   onLike: () => void; // いいね時のコールバックを受け取る
@@ -30,7 +31,7 @@ const Post: React.FC<PostProps> = ({
   content,
   likes,
   replies,
-  profileImage,
+  profileImageUrl,
   link,
   category,
   onLike,
@@ -109,21 +110,21 @@ const Post: React.FC<PostProps> = ({
   return (
     <div className="post anim-box kiran">
       <div className="post-content-wrapper">
-        <div className="post-link-content">
-          <img src={profileImage} alt="Profile" className="profile-img" />
-          <div className="post-body">
-            <div className="post-header">
-              <span className="username">{username}</span>
-              <span className="handle">@{handle}</span>
-              <span className="time">・{time}</span>
-            </div>
-            <div className="post-content">{content}</div>
-            <div className="post-category">
-              {/* カテゴリーの表示を追加 */}
-              <span className="category">{category}</span>
+          <div className="post-link-content">
+            <Image src={profileImageUrl} alt="Profile" className="profile-img" width={40} height={40} />
+            <div className="post-body">
+              <div className="post-header">
+                <span className="username">{username}</span>
+                <span className="handle">@{handle}</span>
+                <span className="time">・{time}</span>
+              </div>
+              <div className="post-content">{content}</div>
+              <div className="post-category">
+                {/* カテゴリーの表示を追加 */}
+                <span className="category">{category}</span>
+              </div>
             </div>
           </div>
-        </div>
 
         <div className="post-actions">
           {/* 返信ボタン */}

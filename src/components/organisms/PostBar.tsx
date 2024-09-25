@@ -1,13 +1,13 @@
 import React from "react";
 import "./PostBar.css";
 import GenderBar from "../modules/GenderBar"; // GenderBarコンポーネントをインポート
-
+import Image from "next/image";
 export interface PostBarProps {
   username: string;
   handle: string;
   time: string;
   content: string;
-  profileImage: string;
+  profileImageUrl: string;
 }
 
 const PostBar: React.FC<PostBarProps> = ({
@@ -15,11 +15,11 @@ const PostBar: React.FC<PostBarProps> = ({
   handle,
   time,
   content,
-  profileImage,
+  profileImageUrl,
 }) => {
   return (
     <div className="post-bar">
-      <img src={profileImage} alt="Profile" className="profile-img" />
+      <Image src={profileImageUrl} alt="Profile" className="profile-img" width={40} height={40} />
       <div className="post-body">
         <div className="post-header">
           <span className="username">{username}</span>

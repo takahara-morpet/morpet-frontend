@@ -7,6 +7,7 @@ export type PostGetResponse = {
   femalePercentage: number;
   createdAt: string;
   updatedAt: string;
+  profileImageUrl: string;
 };
 
 export type PostPercentageUpdateResponse = {
