@@ -50,8 +50,8 @@ const ProfilePage = (): JSX.Element => {
         </button>
       </div>
       <div className="post-list-container">
-        {activeTab === "self" && <PostList posts={selfPosts} />}
-        {activeTab === "like" && <PostList posts={likePosts} />}
+        {activeTab === "self" && <PostList posts={selfPosts}  replyable={false}/>}
+        {activeTab === "like" && <PostList posts={likePosts}  replyable={false}/>}
       </div>
     </div>
   );
