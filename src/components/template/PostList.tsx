@@ -18,9 +18,10 @@ export interface PostData {
 
 interface PostListProps {
   posts: PostData[]; // 投稿データのリストをプロパティとして受け取る
+  replyable: boolean;
 }
 
-const PostList: React.FC<PostListProps> = ({ posts }) => {
+const PostList: React.FC<PostListProps> = ({ posts, replyable }) => {
   const [showLikeAnimation, setShowLikeAnimation] = useState(false);
 
   const handleLike = () => {
@@ -54,6 +55,7 @@ const PostList: React.FC<PostListProps> = ({ posts }) => {
               link={`/timeline/${post.id}`}
               onLike={handleLike}
               category={post.category}
+              replyable={replyable}
             />
           </motion.div>
         ))}

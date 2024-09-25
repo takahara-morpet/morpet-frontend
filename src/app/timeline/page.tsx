@@ -75,8 +75,8 @@ const Page: React.FC = () => {
       </div>
 
       <div className="post-list-container">
-        {activeTab === "recommend" && <PostList posts={recommendPosts || []} />}
-        {activeTab === "follow" && <PostList posts={followPosts} />}
+        {activeTab === "recommend" && <PostList posts={recommendPosts || []} replyable={true} />}
+        {activeTab === "follow" && <PostList posts={followPosts} replyable={false} />}
         {activeTab === "controversial" && (
           <PostListBar posts={controversialPosts} />
         )}{" "}

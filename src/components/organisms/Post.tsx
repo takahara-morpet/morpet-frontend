@@ -21,6 +21,7 @@ interface PostProps {
   profileImageUrl: string;
   link: string;
   category: string; // カテゴリーを追加
+  replyable: boolean;
   onLike: () => void; // いいね時のコールバックを受け取る
 }
 
@@ -35,6 +36,7 @@ const Post: React.FC<PostProps> = ({
   profileImageUrl,
   link,
   category,
+  replyable,
   onLike,
 }) => {
   const [isLiked, setIsLiked] = useState(false);
@@ -105,7 +107,12 @@ const Post: React.FC<PostProps> = ({
   };
   // 返信ボタンクリック時にページ遷移
   const handleReplyClick = () => {
-    router.push(link); // 指定されたリンクに遷移
+    if (replyable) {
+      router.push(link);
+    }
+    else {
+      alert("この投稿には返信できません");
+    }
   };
 
   return (
