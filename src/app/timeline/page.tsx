@@ -6,6 +6,7 @@ import PostList, { PostData } from "@/components/template/PostList"; // PostList
 import PostListBar from "@/components/template/PostListBar"; // PostListBarコンポーネントをインポート
 import SubmitButton from "@/components/template/SubmitButton"; // SubmitButtonのインポート
 import { fetchPosts } from "@/lib/api/post";
+import { fetchUserDetail } from "@/lib/api/user";
 
 const Page: React.FC = () => {
   const [activeTab, setActiveTab] = useState<
@@ -18,17 +19,22 @@ const Page: React.FC = () => {
     const fetchData = async () => {
       try {
         const postlist = await fetchPosts();
-        const mappedPosts = postlist.map((post) => ({
-          id: post.id,
-          username: String(post.userId) + "test",
-          handle: "handle",
-          time: "time",
-          content: post.content,
-          likes: 0,
-          replies: 0,
-          profileImage: post.profileImageUrl,
-          category: post.category,
-        })); // PostData型に変換
+        const mappedPosts = await Promise.all(
+          postlist.map(async (post) => {
+            const userDetails = await fetchUserDetail(String(post.userId));
+            return {
+              id: post.id,
+              username: userDetails.name,
+              handle: String(post.userId),
+              time: "time",
+              content: post.content,
+              likes: 0,
+              replies: 0,
+              profileImage: userDetails.profileImageUrl,
+              category: post.category,
+            };
+          })
+        ); // PostData型に変換
         setPosts(mappedPosts);
       } catch (err) {
         console.log(err);
