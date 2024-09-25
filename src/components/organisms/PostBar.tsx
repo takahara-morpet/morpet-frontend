@@ -19,7 +19,13 @@ const PostBar: React.FC<PostBarProps> = ({
 }) => {
   return (
     <div className="post-bar">
-      <Image src={profileImageUrl} alt="Profile" className="profile-img" width={40} height={40} />
+      <Image
+        src={profileImageUrl}
+        alt="Profile"
+        className="profile-img"
+        width={40}
+        height={40}
+      />
       <div className="post-body">
         <div className="post-header">
           <span className="username">{username}</span>
@@ -28,8 +34,7 @@ const PostBar: React.FC<PostBarProps> = ({
         </div>
         <div className="post-content">{content}</div>
 
-        {/* GenderBar をここに追加 */}
-        <GenderBar />
+        {/* <GenderBar /> */}
       </div>
     </div>
   );
