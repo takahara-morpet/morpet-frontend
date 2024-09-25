@@ -27,6 +27,7 @@ const SignUpPage: React.FC = () => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+      [e.target.name]: e.target.name === "age" ? parseInt(e.target.value, 10) || 0 : e.target.value,
     });
   };
 
