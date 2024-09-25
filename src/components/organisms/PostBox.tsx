@@ -6,7 +6,6 @@ import { createPosts } from "@/lib/api/post";
 import { PostCreateRequest } from "@/types/request/post";
 import { PostData } from "../template/PostList";
 import { fetchUserDetail } from "@/lib/api/user";
-import { UserDetail } from "@/types/response/user";
 
 export interface PostBoxProps {
   onPostCreate: (newPost: PostData) => void; // 投稿完了時に呼び出されるコールバック関数
