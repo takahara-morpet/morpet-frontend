@@ -16,7 +16,7 @@ const PostListBar: React.FC<PostListBarProps> = ({ posts }) => {
             handle={post.handle}
             time={post.time}
             content={post.content}
-            profileImage={post.profileImage}
+            profileImageUrl={post.profileImageUrl}
           />
         </div>
       ))}

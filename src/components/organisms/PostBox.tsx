@@ -5,6 +5,7 @@ import "./PostBox.css";
 import { createPosts } from "@/lib/api/post";
 import { PostCreateRequest } from "@/types/request/post";
 import { PostData } from "../template/PostList";
+import { fetchUserDetail } from "@/lib/api/user";
 
 export interface PostBoxProps {
   onPostCreate: (newPost: PostData) => void; // 投稿完了時に呼び出されるコールバック関数
@@ -14,6 +15,7 @@ export interface PostBoxProps {
 const PostBox: React.FC<PostBoxProps> = ({ onPostCreate, onCloseModal }) => {
   const [text, setText] = useState("");
   const [category, setCategory] = useState("ときめき"); // 初期カテゴリを設定
+  // const [userData, setUserData] = useState<UserDetail | null>(null); // ユーザー情報を保持
   const [error, setError] = useState<string | null>(null); // エラーメッセージを保持
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -26,41 +28,58 @@ const PostBox: React.FC<PostBoxProps> = ({ onPostCreate, onCloseModal }) => {
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCategory(e.target.value);
   };
-
+  
   const handleSubmit = async () => {
     if (text.trim() === "") {
       setError("投稿を記入してください。");
       return;
     }
-
+  
     const userId = localStorage.getItem("userId");
-    console.log("userId:" + String(userId));
-    const postCreateRequest: PostCreateRequest = {
-      userId: Number(userId),
-      category: category,
-      content: text,
+    const fetchData = async () => {
+      try {
+        const user = await fetchUserDetail(String(userId));
+        console.log(user);
+        // setUserData(user);
+  
+        if (!user) {
+          setError("ユーザー情報が取得できませんでした。");
+          return;
+        }
+  
+        const postCreateRequest: PostCreateRequest = {
+          userId: Number(userId),
+          category: category,
+          content: text,
+          profileImageUrl: user.profileImageUrl,
+        };
+        const postData: PostData = {
+          id: 1,
+          username: user.name,
+          content: text,
+          likes: 0,
+          replies: 0,
+          profileImageUrl: user.profileImageUrl,
+          category: category,
+        };
+  
+        try {
+          await createPosts(postCreateRequest);
+          console.log("投稿が成功しました");
+          onPostCreate(postData);
+          setText("");
+          setError(null);
+          onCloseModal(); // 投稿成功後にモーダルを閉じる
+        } catch (err) {
+          console.error("投稿に失敗しました:", err);
+          setError("投稿に失敗しました。");
+        }
+      } catch (err) {
+        console.error("ユーザー情報の取得に失敗しました:", err);
+        setError((err as Error).message);
+      }
     };
-    const postData: PostData = {
-      id: 1, // 実際にはサーバーから返されたIDを使用する
-      username: userId ? userId + "usertest" : "匿名",
-      content: text,
-      likes: 0,
-      replies: 0,
-      profileImage: "",
-      category: category,
-    };
-
-    try {
-      await createPosts(postCreateRequest);
-      console.log("投稿が成功しました");
-      onPostCreate(postData);
-      setText("");
-      setError(null);
-      onCloseModal(); // 投稿成功後にモーダルを閉じる
-    } catch (err) {
-      console.error("投稿に失敗しました:", err);
-      setError("投稿に失敗しました。");
-    }
+    await fetchData();
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
