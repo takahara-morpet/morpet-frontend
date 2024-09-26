@@ -8,7 +8,7 @@ import GenderBar from "../modules/GenderBar";
 import { fetchPostById, updatePostPercentage } from "@/lib/api/post";
 import { PostPercentageUpdateResponse } from "@/types/response/post";
 import Image from "next/image";
-import "../../app/globals.css"
+import "../../app/globals.css";
 
 interface PostProps {
   id: number;
@@ -74,8 +74,8 @@ const Post: React.FC<PostProps> = ({
 
   const handleMaleClick = () => {
     if (malePercentage < 100) {
-      const newMalePercentage = Math.min(malePercentage + 10, 100);
-      const newFemalePercentage = Math.max(femalePercentage - 10, 0);
+      const newMalePercentage = Math.min(malePercentage + 5, 100);
+      const newFemalePercentage = Math.max(femalePercentage - 5, 0);
       setMalePercentage(newMalePercentage);
       setFemalePercentage(newFemalePercentage);
       updatePercentages(newMalePercentage, newFemalePercentage);
@@ -84,8 +84,8 @@ const Post: React.FC<PostProps> = ({
 
   const handleFemaleClick = () => {
     if (femalePercentage < 100) {
-      const newFemalePercentage = Math.min(femalePercentage + 10, 100);
-      const newMalePercentage = Math.max(malePercentage - 10, 0);
+      const newFemalePercentage = Math.min(femalePercentage + 5, 100);
+      const newMalePercentage = Math.max(malePercentage - 5, 0);
       setFemalePercentage(newFemalePercentage);
       setMalePercentage(newMalePercentage);
       updatePercentages(newMalePercentage, newFemalePercentage);
@@ -109,8 +109,7 @@ const Post: React.FC<PostProps> = ({
   const handleReplyClick = () => {
     if (replyable) {
       router.push(link);
-    }
-    else {
+    } else {
       alert("この投稿には返信できません");
     }
   };
@@ -118,35 +117,45 @@ const Post: React.FC<PostProps> = ({
   return (
     <div className="post anim-box kiran">
       <div className="post-content-wrapper">
-          <div className="post-link-content">
-            <Image src={profileImageUrl} alt="Profile" className="profile-img" width={40} height={40} />
-            <div className="post-body">
-              <div className="post-header">
-                <span className="username">{username}</span>
-                <span className="handle">@{handle}</span>
-                <span className="time invisible">・{time}</span>
-              </div>
-              <div className="post-content">{content}</div>
-              <div className="post-category">
-                {/* カテゴリーの表示を追加 */}
-                <span className="category">{category}</span>
-              </div>
+        <div className="post-link-content">
+          <Image
+            src={profileImageUrl}
+            alt="Profile"
+            className="profile-img"
+            width={40}
+            height={40}
+          />
+          <div className="post-body">
+            <div className="post-header">
+              <span className="username">{username}</span>
+              <span className="handle">@{handle}</span>
+              <span className="time invisible">・{time}</span>
+            </div>
+            <div className="post-content">{content}</div>
+            <div className="post-category">
+              {/* カテゴリーの表示を追加 */}
+              <span className="category">{category}</span>
             </div>
           </div>
+        </div>
 
         <div className="post-actions">
           {/* 返信ボタン */}
-          <div className="post-action tooltip henshin" 
+          <div
+            className="post-action tooltip henshin"
             data-tooltip="返信"
-            onClick={handleReplyClick}>
+            onClick={handleReplyClick}
+          >
             <ChatBubbleLeftIcon className="icon" />
             <span>{replies}</span>
           </div>
 
           {/* いいねボタン */}
-          <div className="post-action tooltip iine"
-             data-tooltip="いいね"
-             onClick={handleLikeClicked}>
+          <div
+            className="post-action tooltip iine"
+            data-tooltip="いいね"
+            onClick={handleLikeClicked}
+          >
             {isLiked ? (
               <HeartIconSolid className="icon liked" />
             ) : (
